@@ -18,6 +18,11 @@ class _HomeState extends State<Home> {
         leading: Icon(Icons.menu),
         backgroundColor: Colors.black54,
         pinned: true,
+        //actions: <Widget>[
+        //  GoogleUserCircleAvatar(
+        //    identity: _currentUser,
+        //  )
+        //]
       ),
       SliverList(
         delegate: SliverChildListDelegate(

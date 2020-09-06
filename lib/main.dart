@@ -63,7 +63,7 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
         image: Image.network(
             'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/241/smiling-face-with-sunglasses_1f60e.png'),
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black,
         styleTextUnderTheLoader: TextStyle(),
         photoSize: 100.0,
         loaderColor: Colors.white);
