@@ -9,19 +9,26 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-
     Query query = FirebaseFirestore.instance.collection('publiclist');
 
     return Scaffold(
-      appBar: AppBar(
+        body: CustomScrollView(slivers: <Widget>[
+      SliverAppBar(
         title: Text('Home'),
-        ),
-        body: StreamBuilder<QuerySnapshot>(
+        leading: Icon(Icons.menu),
+        backgroundColor: Colors.black54,
+        pinned: true,
+      ),
+      SliverList(
+        delegate: SliverChildListDelegate(
+            [Text('Public List', style: TextStyle(fontSize: 16))]),
+      ),
+      StreamBuilder<QuerySnapshot>(
           stream: query.snapshots(),
           builder: (context, stream) {
             if (stream.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-
+              return SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()));
             }
 
             if (stream.hasError) {
@@ -30,13 +37,15 @@ class _HomeState extends State<Home> {
 
             QuerySnapshot querySnapshot = stream.data;
 
-            return ListView.builder(
-              itemCount: querySnapshot.size,
-              itemBuilder: (context, index) => Container(height: 20, child: Center(child: Text(querySnapshot.docs[index].data()['name'])),
-            ));
-
-          }
-      )
-    ); 
+            return SliverPadding(
+                padding: EdgeInsets.all(20.0),
+                sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                  return Container(
+                    child: Text(querySnapshot.docs[index].data()['name']),
+                  );
+                }, childCount: querySnapshot.size)));
+          })
+    ]));
   }
 }
