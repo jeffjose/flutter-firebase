@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "27729340317",
+    "firebase_url": "https://sapper-sveltefire-tailwindcss.firebaseio.com",
+    "project_id": "sapper-sveltefire-tailwindcss",
+    "storage_bucket": "sapper-sveltefire-tailwindcss.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27729340317:android:b7df1163cc291908eef174",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27729340317-ec37536j587ov51a72qm450thv35ne8f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutter.firebase",
+            "certificate_hash": "add7fbe10c6aa60c7400ea5deb9e51413bce4365"
+          }
+        },
+        {
+          "client_id": "27729340317-3hvq26i5svc3ojjlb95k4spe3ve7vfhs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB03x17QQ1vtDpmissz-OwQ_7cR8M3MEhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27729340317-3hvq26i5svc3ojjlb95k4spe3ve7vfhs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
