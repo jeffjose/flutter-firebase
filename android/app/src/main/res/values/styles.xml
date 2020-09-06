@@ -15,4 +15,7 @@
     <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+    <style name="DarkTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:defaultFocusHighlightEnabled">false</item>
+    </style>
 </resources>
