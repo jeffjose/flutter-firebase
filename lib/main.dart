@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_firebase/home.dart';
 import 'package:flutter_firebase/controllers/bindings/auth.dart';
 
-GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
+//GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,21 +33,25 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  GoogleSignInAccount _currentUser;
+  // GoogleSignInAccount _currentUser;
 
   @override
   void initState() {
     super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      setState(() {
-        _currentUser = account;
-      });
-
-      if (_currentUser != null) {
-        //_handleGetContact()
-      }
-    });
-    _googleSignIn.signInSilently();
+//    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+//      setState(() {
+//        print('setState');
+//        _currentUser = account;
+//      });
+//
+//      if (_currentUser != null) {
+//        //_handleGetContact()
+//        print('user logged in!!!');
+//      }
+//    });
+//
+//    print('signing in silently');
+//    //_googleSignIn.signInSilently();
   }
 
   @override

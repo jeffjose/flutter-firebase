@@ -13,8 +13,15 @@ class Home extends GetWidget<AuthController> {
     return Scaffold(
         body: CustomScrollView(slivers: <Widget>[
       SliverAppBar(
-        title: Text('Home'),
-        leading: Icon(Icons.menu),
+        title: GetX<AuthController>(
+            init: Get.put<AuthController>(AuthController()),
+            builder: (_) {
+              if (_.user != null) {
+                return Text("User: " + controller.user.email);
+              } else {
+                return Text("User none");
+              }
+            }),
         backgroundColor: Colors.black54,
         pinned: true,
         //actions: <Widget>[
@@ -24,16 +31,19 @@ class Home extends GetWidget<AuthController> {
         //]
       ),
       SliverList(
-        delegate: SliverChildListDelegate(
-            [Text('Public List', style: TextStyle(fontSize: 16))]),
+        delegate: SliverChildListDelegate([
+          RaisedButton(
+              child: Text('Log in'),
+              onPressed: () {
+                controller.login();
+              }),
+          Text('Foo'),
+          Text('Public List', style: TextStyle(fontSize: 16))
+        ]),
       ),
       GetX<PublicListController>(
           init: Get.put<PublicListController>(PublicListController()),
           builder: (_) {
-            print('xxxxxxxxxxxxxxx');
-            print(_);
-            print('xxxxxxxxxxxxxxx');
-
             if (_ == null || _.publiclist == null) {
               return SliverFillRemaining(
                   child: Center(

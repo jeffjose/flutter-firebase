@@ -10,9 +10,7 @@ class PublicListController extends GetxController {
 
   @override
   onInit() {
-    print('--------------------');
-    print('oninit');
-    print('--------------------');
+    print('PUBLICLIST CONTROLLER');
 
     _publicList.bindStream(Database().publicListStream());
   }
