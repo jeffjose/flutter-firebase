@@ -57,7 +57,7 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-        seconds: 2,
+        seconds: 1,
         navigateAfterSeconds: Home(),
         title: Text(
           'Flutter Firebase!',
