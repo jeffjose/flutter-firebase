@@ -19,11 +19,14 @@ void collectionListener() {
         List<PrivilagedListItem> retVal = List();
 
         snapshot.docs.forEach((el) {
-          print(el.data());
           retVal.add(PrivilagedListItem.fromMap(el.data()));
         });
 
         store.privilagedStore.state = retVal;
+      }).onError((e) {
+        print('Handling this error');
+        print(e);
+        store.privilagedStore.state = [];
       });
     } else {
       store.privilagedStore.state = [];
@@ -37,7 +40,6 @@ void collectionListener() {
     List<PublicListItem> retVal = List();
 
     snapshot.docs.forEach((el) {
-      print(el.data());
       retVal.add(PublicListItem.fromMap(el.data()));
     });
 
