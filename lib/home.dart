@@ -41,35 +41,48 @@ class _HomeState extends State<Home> {
                 signOut();
               }),
           MultiStreamStateBuilder(
-            streamStates: [store.emailx],
-            builder: (_) => Text(store.emailx.state.toString()),
+            streamStates: [store.email, store.publicStore],
+            builder: (_) => Column(
+              children: [
+                Text('${store.publicStore.state.length}'),
+                Text('${store.email.state}'),
+              ],
+            ),
           ),
-          Text('Public List', style: TextStyle(fontSize: 16))
         ]),
       ),
-      StreamBuilder<QuerySnapshot>(
-          stream: query.snapshots(),
-          builder: (context, stream) {
-            if (stream.connectionState == ConnectionState.waiting) {
-              return SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()));
-            }
-
-            if (stream.hasError) {
-              return Center(child: Text(stream.error.toString()));
-            }
-
-            QuerySnapshot querySnapshot = stream.data;
-
+      SliverList(
+        delegate: SliverChildListDelegate(
+            [Text('Privilaged List', style: TextStyle(fontSize: 16))]),
+      ),
+      MultiStreamStateBuilder(
+          streamStates: [store.publicStore],
+          builder: (_) {
             return SliverPadding(
                 padding: EdgeInsets.all(20.0),
                 sliver: SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                   return Container(
-                    child: Text(querySnapshot.docs[index].data()['name']),
+                    child: Text(store.publicStore.state[index].name),
                   );
-                }, childCount: querySnapshot.size)));
-          })
+                }, childCount: store.publicStore.state.length)));
+          }),
+      SliverList(
+        delegate: SliverChildListDelegate(
+            [Text('Privilaged List', style: TextStyle(fontSize: 16))]),
+      ),
+      MultiStreamStateBuilder(
+          streamStates: [store.privilagedStore],
+          builder: (_) {
+            return SliverPadding(
+                padding: EdgeInsets.all(20.0),
+                sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                  return Container(
+                    child: Text(store.privilagedStore.state[index].name),
+                  );
+                }, childCount: store.privilagedStore.state.length)));
+          }),
     ]));
   }
 }
