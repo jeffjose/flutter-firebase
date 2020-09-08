@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:stream_state/stream_state_builder.dart';
+
+import 'firebase/firebase.dart';
+import 'stores/store.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -25,8 +29,23 @@ class _HomeState extends State<Home> {
         //]
       ),
       SliverList(
-        delegate: SliverChildListDelegate(
-            [Text('Public List', style: TextStyle(fontSize: 16))]),
+        delegate: SliverChildListDelegate([
+          RaisedButton(
+              child: Text('Login'),
+              onPressed: () {
+                signInWithGoogle();
+              }),
+          RaisedButton(
+              child: Text('Logout'),
+              onPressed: () {
+                signOut();
+              }),
+          MultiStreamStateBuilder(
+            streamStates: [store.emailx],
+            builder: (_) => Text(store.emailx.state.toString()),
+          ),
+          Text('Public List', style: TextStyle(fontSize: 16))
+        ]),
       ),
       StreamBuilder<QuerySnapshot>(
           stream: query.snapshots(),

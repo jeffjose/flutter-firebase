@@ -1,15 +1,28 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:stream_state/stream_state.dart';
 
 import 'home.dart';
+import 'firebase/firebase.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await initStreamStatePersist();
+  //await Firebase.initializeApp();
+  final Future<FirebaseApp> _app = Firebase.initializeApp();
+
+  //_googleSignIn.signInSilently();
+
+  Stream.fromFuture(_app).listen((app) {
+    authListener();
+    collectionListener();
+  });
+
   runApp(App());
 }
 
@@ -35,23 +48,6 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  GoogleSignInAccount _currentUser;
-
-  @override
-  void initState() {
-    super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      setState(() {
-        _currentUser = account;
-      });
-
-      if (_currentUser != null) {
-        //_handleGetContact()
-      }
-    });
-    _googleSignIn.signInSilently();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
