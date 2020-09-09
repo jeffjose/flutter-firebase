@@ -22,5 +22,6 @@ signInWithGoogle() async {
 }
 
 signOut() async {
+  _googleSignIn.disconnect();
   _auth.signOut();
 }
