@@ -1,11 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stream_state/stream_state.dart';
 
-import 'firebase/firebase.dart';
-import 'components/IntroScreen.dart';
+import 'package:flutter_firebase/home.dart';
+import 'package:flutter_firebase/firebase/firebase.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
@@ -18,6 +17,7 @@ void main() async {
   //_googleSignIn.signInSilently();
 
   Stream.fromFuture(_app).listen((app) {
+    print(app);
     authListener();
     collectionListener();
   });
@@ -37,6 +37,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return withMaterialApp(Center(child: IntroScreen()));
+    return withMaterialApp(Center(child: Home()));
   }
 }

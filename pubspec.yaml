@@ -27,8 +27,19 @@ dependencies:
 
 dev_dependencies:
   pedantic:
+  flutter_native_splash:
+  flutter_launcher_icons:
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
+
+flutter_native_splash:
+  image: "assets/logo.png"
+  color: "1A202C"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"
