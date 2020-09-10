@@ -19,17 +19,21 @@ void main() async {
     collectionListener();
   });
 
+  await _app;
+
   runApp(App());
 }
 
 class App extends StatelessWidget {
   MaterialApp withMaterialApp(Widget body) {
     return MaterialApp(
-        title: 'Flutter Firebase',
-        theme: ThemeData.dark(),
-        home: Scaffold(
-          body: body,
-        ));
+      title: 'Flutter Firebase',
+      theme: ThemeData.dark(),
+      home: Scaffold(
+        body: body,
+      ),
+      debugShowCheckedModeBanner: false,
+    );
   }
 
   @override

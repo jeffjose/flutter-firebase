@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stream_state/stream_state.dart';
 
 class PublicListItem {
@@ -50,9 +51,12 @@ class Store {
     //deserialize: (serialized) => PublicListItem.fromMap(serialized)
   );
   var privilagedStore = StreamState<List<PrivilagedListItem>>(
-      //serialize: (state) => state.toMap(),
-      //deserialize: (serialized) => PublicListItem.fromMap(serialized)
-      );
+    initial: [],
+    //serialize: (state) => state.toMap(),
+    //deserialize: (serialized) => PublicListItem.fromMap(serialized)
+  );
+
+  var user = StreamState<User>(initial: null);
 }
 
 final store = Store();

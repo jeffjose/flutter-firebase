@@ -8,8 +8,6 @@ void collectionListener() {
     print('[COLLECTION]: user changed');
     print(user);
 
-    store.email.state = user?.email;
-
     if (user != null) {
       FirebaseFirestore.instance
           .collection('privilagedlist')

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:flutter_firebase/stores/store.dart';
+
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -8,6 +10,14 @@ authListener() {
   FirebaseAuth.instance.authStateChanges().listen((user) {
     print('[AUTH]: user changed');
     print(user);
+
+    if (user != null) {
+      print('login');
+      store.user.state = user;
+    } else {
+      print('logout');
+      store.user.state = null;
+    }
   });
 }
 

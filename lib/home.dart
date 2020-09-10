@@ -20,13 +20,21 @@ class _HomeState extends State<Home> {
           SliverAppBar(
             title: Text('Home'),
             leading: Icon(Icons.menu),
-            backgroundColor: Colors.black54,
+            backgroundColor: Colors.black12,
             pinned: true,
-            //actions: <Widget>[
-            //  GoogleUserCircleAvatar(
-            //    identity: _currentUser,
-            //  )
-            //]
+            actions: <Widget>[
+              StreamStateBuilder(
+                  streamState: store.user,
+                  builder: (_, _i) {
+                    if (store.user.state != null) {
+                      return CircleAvatar(
+                          child: ClipOval(
+                              child: Image.network(store.user.state.photoURL)));
+                    } else {
+                      return Container();
+                    }
+                  })
+            ],
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -41,12 +49,20 @@ class _HomeState extends State<Home> {
                     signOut();
                   }),
               MultiStreamStateBuilder(
-                streamStates: [store.email, store.publicStore],
+                streamStates: [store.user, store.publicStore],
                 builder: (_) => Column(
                   children: [
                     Text(
                         '${store.publicStore.state.length}, ${store.privilagedStore.state.length}'),
-                    Text('${store.email.state}'),
+                    (store.user.state != null)
+                        ? Text('${store.user.state.email}')
+                        : Text(''),
+                    (store.user.state != null)
+                        ? Text('${store.user.state.displayName}')
+                        : Text(''),
+                    (store.user.state != null)
+                        ? Text('${store.user.state.photoUrl}')
+                        : Text(''),
                   ],
                 ),
               ),
