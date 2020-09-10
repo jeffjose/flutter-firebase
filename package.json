@@ -1,0 +1,11 @@
+{
+  "name": "flutter-firebase",
+  "version": "1.0.0",
+  "repository": "git@github.com:jeffjose/flutter-firebase.git",
+  "author": "Jeffrey Jose <jeffjosejeff@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "splash": "flutter pub pub run flutter_native_splash:create",
+    "icons": "flutter pub pub run flutter_launcher_icons:main"
+  }
+}
