@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stream_state/stream_state.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_firebase/home.dart';
 import 'package:flutter_firebase/firebase/firebase.dart';
@@ -38,6 +39,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Color(0xff2E2E2E)));
     return withMaterialApp(Center(child: Home()));
   }
 }

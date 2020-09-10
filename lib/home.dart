@@ -20,8 +20,7 @@ class _HomeState extends State<Home> {
           SliverAppBar(
             title: Text('Home'),
             leading: Icon(Icons.menu),
-            backgroundColor: Colors.black12,
-            pinned: true,
+            backgroundColor: Color(0xff2E2E2E),
             actions: <Widget>[
               StreamStateBuilder(
                   streamState: store.user,
