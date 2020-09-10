@@ -20,10 +20,9 @@ dependencies:
   splashscreen:
   flutter_signin_button:
   stream_state:
-
   rxdart:
-
   cupertino_icons:
+  path_provider:
 
 dev_dependencies:
   pedantic:

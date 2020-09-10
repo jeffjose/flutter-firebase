@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_firebase/stores/store.dart';
+import 'package:path_provider/path_provider.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 FirebaseAuth _auth = FirebaseAuth.instance;
@@ -31,7 +32,20 @@ signInWithGoogle() async {
   await _auth.signInWithCredential(credential);
 }
 
+_deleteCacheAndStorage() async {
+  final cacheDir = await getTemporaryDirectory();
+  if (cacheDir.existsSync()) {
+    cacheDir.deleteSync(recursive: true);
+  }
+
+  final appDir = await getApplicationSupportDirectory();
+  if (appDir.existsSync()) {
+    appDir.deleteSync(recursive: true);
+  }
+}
+
 signOut() async {
-  _googleSignIn.disconnect();
-  _auth.signOut();
+  await _deleteCacheAndStorage();
+  await _googleSignIn.disconnect();
+  await _auth.signOut();
 }
