@@ -14,10 +14,7 @@ void main() async {
   //await Firebase.initializeApp();
   final Future<FirebaseApp> _app = Firebase.initializeApp();
 
-  //_googleSignIn.signInSilently();
-
   Stream.fromFuture(_app).listen((app) {
-    print(app);
     authListener();
     collectionListener();
   });
