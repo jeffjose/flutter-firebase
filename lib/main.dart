@@ -39,8 +39,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Color(0xff2E2E2E)));
+    SystemChrome.setEnabledSystemUIOverlays(
+      [SystemUiOverlay.top, SystemUiOverlay.bottom],
+    );
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Color(0xff2E2E2E),
+        systemNavigationBarColor: Color(0xff2E2E2E)));
+
     return withMaterialApp(Center(child: Home()));
   }
 }
