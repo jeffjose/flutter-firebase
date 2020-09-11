@@ -46,6 +46,6 @@ _deleteCacheAndStorage() async {
 
 signOut() async {
   await _deleteCacheAndStorage();
-  await _googleSignIn.disconnect();
+  await _googleSignIn.signOut();
   await _auth.signOut();
 }
