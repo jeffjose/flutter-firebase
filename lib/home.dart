@@ -19,20 +19,24 @@ class _HomeState extends State<Home> {
         body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
             title: Text('Home'),
-            leading: Icon(Icons.menu),
             backgroundColor: Color(0xff2E2E2E),
             actions: <Widget>[
-              StreamStateBuilder(
-                  streamState: store.user,
-                  builder: (_, _i) {
-                    if (store.user.state != null) {
-                      return CircleAvatar(
-                          child: ClipOval(
-                              child: Image.network(store.user.state.photoURL)));
-                    } else {
-                      return Container();
-                    }
-                  })
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: StreamStateBuilder(
+                    streamState: store.user,
+                    builder: (_, _i) {
+                      if (store.user.state != null) {
+                        return CircleAvatar(
+                            radius: 15,
+                            child: ClipOval(
+                                child:
+                                    Image.network(store.user.state.photoURL)));
+                      } else {
+                        return Container();
+                      }
+                    }),
+              )
             ],
           ),
           SliverList(
