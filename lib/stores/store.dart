@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stream_state/stream_state.dart';
+import 'package:flutter_firebase/themes/theme.dart';
 
 class AppTheme {
   final Color backgroundColor;
@@ -73,7 +74,9 @@ class Store {
   var user = StreamState<User>(initial: null);
 
   var darkMode = StreamState<bool>(initial: true);
-  var theme = StreamState<AppTheme>(initial: null);
+
+  // Initialize with darkModeTheme
+  var theme = StreamState<AppTheme>(initial: darkModeTheme);
 }
 
 final store = Store();

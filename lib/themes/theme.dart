@@ -35,21 +35,19 @@ ThemeData getLightModeTheme(BuildContext context) {
 }
 
 void themeListener() {
-  store.darkMode.stream.listen((event) {
-    print(event);
-
-    if (event == true) {
-      store.theme.state = AppTheme(
-          appBarBackgroundColor: darkAppBarBackgroundColor,
-          appBarColor: darkAppBarColor,
-          bodyColor: darkbodyColor,
-          backgroundColor: darkbackgroundColor);
-    } else {
-      store.theme.state = AppTheme(
-          appBarBackgroundColor: lightAppBarBackgroundColor,
-          appBarColor: lightAppBarColor,
-          bodyColor: lightbodyColor,
-          backgroundColor: lightbackgroundColor);
-    }
+  store.darkMode.stream.listen((darkMode) {
+    store.theme.state = darkMode ? darkModeTheme : lightModeTheme;
   });
 }
+
+AppTheme darkModeTheme = AppTheme(
+    appBarBackgroundColor: darkAppBarBackgroundColor,
+    appBarColor: darkAppBarColor,
+    bodyColor: darkbodyColor,
+    backgroundColor: darkbackgroundColor);
+
+AppTheme lightModeTheme = AppTheme(
+    appBarBackgroundColor: lightAppBarBackgroundColor,
+    appBarColor: lightAppBarColor,
+    bodyColor: lightbodyColor,
+    backgroundColor: lightbackgroundColor);

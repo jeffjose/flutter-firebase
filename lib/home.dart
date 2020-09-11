@@ -16,11 +16,17 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     Query query = FirebaseFirestore.instance.collection('publiclist');
 
+    AppTheme appTheme = store.theme.state;
+    store.darkMode.stream.listen((event) {
+      appTheme = store.theme.state;
+    });
+
     return Scaffold(
         body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
-            title: Text('Home', style: GoogleFonts.getFont('Inter')),
-            backgroundColor: Color(0xff2e2e2e),
+            title: Text('Home' + appTheme.appBarBackgroundColor.toString(),
+                style: GoogleFonts.inter(color: appTheme.appBarColor)),
+            backgroundColor: appTheme.appBarBackgroundColor,
           ),
           SliverList(
             delegate: SliverChildListDelegate([
