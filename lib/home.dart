@@ -33,7 +33,10 @@ class _HomeState extends State<Home> {
                                 child:
                                     Image.network(store.user.state.photoURL)));
                       } else {
-                        return Container();
+                        return CircleAvatar(
+                            child: Icon(Icons.account_circle_rounded),
+                            backgroundColor: Colors.black26,
+                            radius: 15);
                       }
                     }),
               )
@@ -104,14 +107,20 @@ class _HomeState extends State<Home> {
                     }, childCount: store.privilagedStore.state.length)));
               }),
         ]),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Home')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.business), title: Text('Business'))
-          ],
-          selectedItemColor: Colors.amber[800],
+        bottomNavigationBar: SizedBox(
+          height: 60,
+          child: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.business), title: Text('')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.account_circle_rounded), title: Text(''))
+            ],
+            selectedItemColor: Colors.amber[800],
+          ),
         ));
   }
 }
