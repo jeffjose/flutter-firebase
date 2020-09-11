@@ -20,27 +20,6 @@ class _HomeState extends State<Home> {
           SliverAppBar(
             title: Text('Home'),
             backgroundColor: Color(0xff2E2E2E),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: StreamStateBuilder(
-                    streamState: store.user,
-                    builder: (_, _i) {
-                      if (store.user.state != null) {
-                        return CircleAvatar(
-                            radius: 15,
-                            child: ClipOval(
-                                child:
-                                    Image.network(store.user.state.photoURL)));
-                      } else {
-                        return CircleAvatar(
-                            child: Icon(Icons.account_circle_rounded),
-                            backgroundColor: Colors.black26,
-                            radius: 15);
-                      }
-                    }),
-              )
-            ],
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -117,7 +96,42 @@ class _HomeState extends State<Home> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.business), title: Text('')),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.account_circle_rounded), title: Text(''))
+                  icon: InkResponse(
+                    child: StreamStateBuilder(
+                        streamState: store.user,
+                        builder: (_, _i) {
+                          if (store.user.state != null) {
+                            return CircleAvatar(
+                              radius: 15,
+                              child: Container(
+                                padding: EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF2E2E2E),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  //border: Border.all(color: Colors.red, width: 0),
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    border: Border.all(
+                                        color: Color(0x00FF0000), width: 0),
+                                    image: DecorationImage(
+                                        image: Image.network(
+                                                store.user.state.photoURL)
+                                            .image,
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return Icon(Icons.account_circle);
+                          }
+                        }),
+                  ),
+                  title: Text('')),
             ],
             selectedItemColor: Colors.amber[800],
           ),
