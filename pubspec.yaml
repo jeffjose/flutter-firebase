@@ -23,6 +23,7 @@ dependencies:
   rxdart:
   cupertino_icons:
   path_provider:
+  google_fonts:
 
 dev_dependencies:
   pedantic:

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stream_state/stream_state.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter_firebase/home.dart';
 import 'package:flutter_firebase/firebase/firebase.dart';
@@ -26,10 +27,15 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-  MaterialApp withMaterialApp(Widget body) {
+  MaterialApp withMaterialApp(Widget body, BuildContext context) {
+    final ThemeData themeData = ThemeData(
+      brightness: Brightness.dark,
+      //textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
+    );
+
     return MaterialApp(
       title: 'Flutter Firebase',
-      theme: ThemeData.dark(),
+      theme: themeData,
       home: Scaffold(
         body: body,
       ),
@@ -46,6 +52,6 @@ class App extends StatelessWidget {
         statusBarColor: Color(0xff2E2E2E),
         systemNavigationBarColor: Color(0xff2E2E2E)));
 
-    return withMaterialApp(Center(child: Home()));
+    return withMaterialApp(Center(child: Home()), context);
   }
 }

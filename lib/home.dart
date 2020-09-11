@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('')),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.business), title: Text('')),
+                  icon: Icon(Icons.chat_bubble), title: Text('')),
               BottomNavigationBarItem(
                   icon: InkResponse(
                     child: StreamStateBuilder(
