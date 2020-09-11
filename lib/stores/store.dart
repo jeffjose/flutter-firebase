@@ -1,5 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stream_state/stream_state.dart';
+
+class AppTheme {
+  final Color backgroundColor;
+  final Color bodyColor;
+  final Color appBarColor;
+  final Color appBarBackgroundColor;
+
+  AppTheme(
+      {this.backgroundColor,
+      this.bodyColor,
+      this.appBarBackgroundColor,
+      this.appBarColor});
+}
 
 class PublicListItem {
   final String name;
@@ -57,6 +71,9 @@ class Store {
   );
 
   var user = StreamState<User>(initial: null);
+
+  var darkMode = StreamState<bool>(initial: true);
+  var theme = StreamState<AppTheme>(initial: null);
 }
 
 final store = Store();

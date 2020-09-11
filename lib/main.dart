@@ -3,10 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stream_state/stream_state.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter_firebase/home.dart';
+import 'package:flutter_firebase/stores/store.dart';
 import 'package:flutter_firebase/firebase/firebase.dart';
+import 'package:flutter_firebase/themes/theme.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
@@ -19,6 +20,7 @@ void main() async {
   Stream.fromFuture(_app).listen((app) {
     authListener();
     collectionListener();
+    themeListener();
   });
 
   await _app;
@@ -26,21 +28,37 @@ void main() async {
   runApp(App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   MaterialApp withMaterialApp(Widget body, BuildContext context) {
-    final ThemeData themeData = ThemeData(
-      brightness: Brightness.dark,
-      //textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
-    );
+    ThemeData lightModeTheme = getLightModeTheme(context);
+    ThemeData darkModeTheme = getDarkModeTheme(context);
 
     return MaterialApp(
       title: 'Flutter Firebase',
-      theme: themeData,
+      theme: lightModeTheme,
+      darkTheme: darkModeTheme,
+      themeMode: store.darkMode.state ? ThemeMode.dark : ThemeMode.light,
       home: Scaffold(
         body: body,
       ),
       debugShowCheckedModeBanner: false,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Setup a listener to update UI on theme switch
+    store.darkMode.stream.listen((event) {
+      // Force update
+      setState(() {});
+    });
   }
 
   @override

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stream_state/stream_state_builder.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'firebase/firebase.dart';
-import 'stores/store.dart';
+import 'package:flutter_firebase/firebase/firebase.dart';
+import 'package:flutter_firebase/stores/store.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,8 +19,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
-            title: Text('Home'),
-            backgroundColor: Color(0xff2E2E2E),
+            title: Text('Home', style: GoogleFonts.getFont('Inter')),
+            backgroundColor: Color(0xff2e2e2e),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -33,29 +34,13 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     signOut();
                   }),
-              MultiStreamStateBuilder(
-                streamStates: [store.user, store.publicStore],
-                builder: (_) => Column(
-                  children: [
-                    Text(
-                        '${store.publicStore.state.length}, ${store.privilagedStore.state.length}'),
-                    (store.user.state != null)
-                        ? Text('${store.user.state.email}')
-                        : Text(''),
-                    (store.user.state != null)
-                        ? Text('${store.user.state.displayName}')
-                        : Text(''),
-                    (store.user.state != null)
-                        ? Text('${store.user.state.photoUrl}')
-                        : Text(''),
-                  ],
-                ),
-              ),
+              RaisedButton(
+                  child: Text('Switch theme'),
+                  onPressed: () {
+                    store.darkMode.state = !store.darkMode.state;
+                  }),
+              Text('Privilaged List', style: TextStyle(fontSize: 16))
             ]),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-                [Text('Privilaged List', style: TextStyle(fontSize: 16))]),
           ),
           MultiStreamStateBuilder(
               streamStates: [store.publicStore],
@@ -65,13 +50,19 @@ class _HomeState extends State<Home> {
                     sliver: SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
                       return Container(
-                        child: Text(store.publicStore.state[index].name),
+                        child: Text(
+                          store.publicStore.state[index].name,
+                        ),
                       );
                     }, childCount: store.publicStore.state.length)));
               }),
           SliverList(
-            delegate: SliverChildListDelegate(
-                [Text('Privilaged List', style: TextStyle(fontSize: 16))]),
+            delegate: SliverChildListDelegate([
+              Text('Privilaged List',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ))
+            ]),
           ),
           MultiStreamStateBuilder(
               streamStates: [store.privilagedStore],
@@ -87,14 +78,21 @@ class _HomeState extends State<Home> {
               }),
         ]),
         bottomNavigationBar: SizedBox(
-          height: 60,
+          height: 70,
           child: BottomNavigationBar(
+            onTap: (index) {
+              print(index);
+            },
             showSelectedLabels: false,
             showUnselectedLabels: false,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('')),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.chat_bubble), title: Text('')),
+                  icon: Icon(
+                    Icons.chat_bubble,
+                    color: Colors.grey[400],
+                  ),
+                  title: Text('')),
               BottomNavigationBarItem(
                   icon: InkResponse(
                     child: StreamStateBuilder(
@@ -116,7 +114,7 @@ class _HomeState extends State<Home> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(15)),
                                     border: Border.all(
-                                        color: Color(0x00FF0000), width: 0),
+                                        color: Color(0x00ffffff), width: 0),
                                     image: DecorationImage(
                                         image: Image.network(
                                                 store.user.state.photoURL)
