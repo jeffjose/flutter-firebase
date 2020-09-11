@@ -25,8 +25,9 @@ class _HomeState extends State<Home> {
         body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
             title: Text('Home' + appTheme.appBarBackgroundColor.toString(),
-                style: GoogleFonts.inter(color: appTheme.appBarColor)),
-            backgroundColor: appTheme.appBarBackgroundColor,
+                style: GoogleFonts.inter(textStyle: Theme.of(context).textTheme.headline6))
+                //style: GoogleFonts.inter(color: appTheme.appBarColor)),
+            //backgroundColor: appTheme.appBarBackgroundColor,
           ),
           SliverList(
             delegate: SliverChildListDelegate([

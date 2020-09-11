@@ -18,6 +18,7 @@ ThemeData getDarkModeTheme(BuildContext context) {
   // Dark Mode Theme
   return ThemeData(
     brightness: Brightness.dark,
+    primaryColor: darkAppBarBackgroundColor,
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme.apply(
           bodyColor: Colors.white,
         )),
@@ -28,6 +29,7 @@ ThemeData getLightModeTheme(BuildContext context) {
   // Light/Normal Mode Theme
   return ThemeData(
     brightness: Brightness.light,
+    primaryColor: lightAppBarBackgroundColor,
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme.apply(
           bodyColor: Colors.black87,
         )),
