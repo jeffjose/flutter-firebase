@@ -24,11 +24,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
-            title: Text('Home' + appTheme.appBarBackgroundColor.toString(),
-                style: GoogleFonts.inter(textStyle: Theme.of(context).textTheme.headline6))
-                //style: GoogleFonts.inter(color: appTheme.appBarColor)),
-            //backgroundColor: appTheme.appBarBackgroundColor,
-          ),
+              title: Text('Home',
+                  style: GoogleFonts.inter(
+                      textStyle: Theme.of(context).textTheme.headline6))
+              //style: GoogleFonts.inter(color: appTheme.appBarColor)),
+              //backgroundColor: appTheme.appBarBackgroundColor,
+              ),
           SliverList(
             delegate: SliverChildListDelegate([
               RaisedButton(
@@ -111,7 +112,8 @@ class _HomeState extends State<Home> {
                               child: Container(
                                 padding: EdgeInsets.all(2),
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF2E2E2E),
+                                  color:
+                                      store.theme.state.appBarBackgroundColor,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),
                                   //border: Border.all(color: Colors.red, width: 0),
@@ -138,7 +140,7 @@ class _HomeState extends State<Home> {
                   ),
                   title: Text('')),
             ],
-            selectedItemColor: Colors.amber[800],
+            selectedItemColor: Theme.of(context).accentColor,
           ),
         ));
   }

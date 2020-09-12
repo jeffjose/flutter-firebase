@@ -24,6 +24,7 @@ dependencies:
   cupertino_icons:
   path_provider:
   google_fonts:
+  flutter_statusbarcolor:
 
 dev_dependencies:
   pedantic:

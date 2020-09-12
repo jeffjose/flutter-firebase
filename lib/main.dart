@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stream_state/stream_state.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 import 'package:flutter_firebase/home.dart';
 import 'package:flutter_firebase/stores/store.dart';
@@ -63,12 +64,10 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(
-      [SystemUiOverlay.top, SystemUiOverlay.bottom],
-    );
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Color(0xff2E2E2E),
-        systemNavigationBarColor: Color(0xff2E2E2E)));
+    FlutterStatusbarcolor.setStatusBarColor(
+        store.theme.state.appBarBackgroundColor);
+    FlutterStatusbarcolor.setNavigationBarColor(
+        store.theme.state.appBarBackgroundColor);
 
     return withMaterialApp(Center(child: Home()), context);
   }
