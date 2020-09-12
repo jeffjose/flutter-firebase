@@ -25,6 +25,9 @@ void main() async {
   Stream.fromFuture(_app).listen((app) {
     authListener();
     collectionListener();
+
+    // Required for statusbar and navbar theme switch.
+    // The full app theme is piped through `themeMode`
     themeListener();
   });
 
