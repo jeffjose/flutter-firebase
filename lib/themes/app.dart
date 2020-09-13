@@ -9,6 +9,7 @@ import 'colors.dart';
 Color darkPrimary = materialColor;
 Color darkPrimaryLight = materialColorLight;
 Color darkPrimaryLighter = materialColorLighter;
+Color darkPrimaryLightest = materialColorLightest;
 Color darkPrimaryDark = materialColorDark;
 Color darkAccent = materialAccent;
 
@@ -29,10 +30,28 @@ ThemeData getDarkModeTheme(BuildContext context) {
     //cardColor: Color(0xaaF5E0C3),
     //dividerColor: Color(0x1f6D42CE),
     //focusColor: Color(0x1aF5E0C3),
-    textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme.apply(
-          bodyColor: Colors.white,
-        )),
+    textTheme: GoogleFonts.interTextTheme(
+      Theme.of(context).textTheme.copyWith(
+            headline1: TextStyle(color: Colors.blue),
+            headline2: TextStyle(color: Colors.blue),
+            headline3: TextStyle(color: Colors.blue),
+            headline4: TextStyle(color: Colors.blue),
+            headline5: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ), // User Settings Display Name
+            headline6: TextStyle(color: Colors.white),
+            subtitle1: TextStyle(color: Colors.blue),
+            subtitle2: TextStyle(color: Colors.blue),
+            bodyText1: TextStyle(color: Colors.orange),
+            bodyText2: TextStyle(color: Colors.white),
+            caption: TextStyle(color: darkPrimaryLightest),
+            button: TextStyle(color: Colors.red),
+            overline: TextStyle(color: Colors.red),
+          ),
+    ),
     buttonColor: darkPrimaryLighter,
+    iconTheme: Theme.of(context).iconTheme.copyWith(color: darkPrimaryLightest),
   );
 }
 

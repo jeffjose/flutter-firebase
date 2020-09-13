@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stream_state/stream_state.dart';
 import 'package:flutter_firebase/stores/store.dart';
 
+import 'package:flutter_firebase/components/usersettingsitem.dart';
+import 'package:flutter_firebase/components/usersettingsheader.dart';
+
 class UserSettings extends StatefulWidget {
   @override
   _UserSettingsState createState() => _UserSettingsState();
@@ -17,6 +20,7 @@ class _UserSettingsState extends State<UserSettings> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+              pinned: true,
               title: Text('User Settings',
                   style: GoogleFonts.inter(
                       textStyle: Theme.of(context).textTheme.headline6))),
@@ -32,25 +36,31 @@ class _UserSettingsState extends State<UserSettings> {
                           CircleAvatar(
                             radius: 40,
                             child: ClipOval(
-                              child: Image.network(
-                                user.state.photoURL,
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
+                              child: (user.state != null)
+                                  ? Image.network(
+                                      user.state.photoURL,
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container(color: Colors.blue),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              user.state.displayName,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                            child: (user.state != null)
+                                ? Text(
+                                    user.state.displayName,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  )
+                                : Text('Anonymous'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Text('Logout'),
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: (user.state != null)
+                                ? Text('Logout')
+                                : Text('Login'),
                           ),
                         ],
                       ),
@@ -58,33 +68,28 @@ class _UserSettingsState extends State<UserSettings> {
                   ],
                 ),
                 color: Theme.of(context).primaryColorDark,
-                height: 180,
+                height: 170,
               ),
             ]),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              Text('USER SETTINGS'),
-              Container(color: Colors.red, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.yellow, height: 50),
-              Container(color: Colors.red, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.blue, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.orange, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.amber, height: 50),
-              Container(color: Colors.red, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.yellow, height: 50),
-              Container(color: Colors.red, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.blue, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.orange, height: 50),
-              Container(color: Colors.green, height: 50),
-              Container(color: Colors.amber, height: 50),
+              UserSettingsHeader('APPEARENCE'),
+              UserSettingsItem(Icons.palette, 'Dark Mode'),
+              UserSettingsHeader('APP SETTINGS'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(Icons.brush, 'Dark Mode'),
             ]),
           ),
         ],
