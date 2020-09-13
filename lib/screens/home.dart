@@ -32,7 +32,9 @@ class Home extends StatelessWidget {
               onPressed: () {
                 store.darkMode.state = !store.darkMode.state;
               }),
-          Text('Privilaged List', style: TextStyle(fontSize: 16))
+          Text('Privilaged List', style: TextStyle(fontSize: 16)),
+          RaisedButton(child: Text('Add item'), onPressed: () {}),
+          RaisedButton(child: Text('Remove item'), onPressed: () {}),
         ]),
       ),
       MultiStreamStateBuilder(
@@ -50,12 +52,13 @@ class Home extends StatelessWidget {
                 }, childCount: store.publicStore.state.length)));
           }),
       SliverList(
-        delegate: SliverChildListDelegate([
-          Text('Privilaged List',
-              style: TextStyle(
-                fontSize: 16,
-              ))
-        ]),
+        delegate: SliverChildListDelegate(
+          [
+            Text('Privilaged List', style: TextStyle(fontSize: 16)),
+            RaisedButton(child: Text('Add item'), onPressed: () {}),
+            RaisedButton(child: Text('Remove item'), onPressed: () {}),
+          ],
+        ),
       ),
       MultiStreamStateBuilder(
           streamStates: [store.privilagedStore],

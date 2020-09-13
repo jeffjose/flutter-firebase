@@ -51,8 +51,8 @@ ThemeData getDarkModeTheme(BuildContext context) {
     buttonColor: darkPrimaryLighter,
     iconTheme: Theme.of(context).iconTheme.copyWith(color: darkPrimaryLightest),
 
-    splashColor: Colors.transparent,
-    highlightColor: Colors.black,
+    splashColor: Colors.black12,
+    highlightColor: Colors.transparent,
   );
 }
 
@@ -95,8 +95,8 @@ ThemeData getLightModeTheme(BuildContext context) {
     // TODO
     iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.black54),
 
-    splashColor: Colors.transparent,
-    highlightColor: Colors.black12,
+    splashColor: Colors.black12,
+    highlightColor: Colors.transparent,
   );
 }
 
