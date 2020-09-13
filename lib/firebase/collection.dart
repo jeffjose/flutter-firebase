@@ -63,3 +63,21 @@ void addItemToCollection(String collectionName) {
         .add({'name': string, 'user': (user != null) ? user.uid : "anon"});
   }
 }
+
+void removeItemFromCollection(String collectionName) {
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection(collectionName);
+
+  User user = FirebaseAuth.instance.currentUser;
+
+  if ((user != null) || collectionName == "publiclist") {
+    collection
+        .orderBy(FieldPath.documentId)
+        .limit(1)
+        .get()
+        .then((QuerySnapshot snapshot) {
+      print(snapshot.docs[0]);
+      snapshot.docs[0].reference.delete();
+    });
+  }
+}

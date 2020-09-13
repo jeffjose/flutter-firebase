@@ -38,7 +38,11 @@ class Home extends StatelessWidget {
               onPressed: () {
                 addItemToCollection('publiclist');
               }),
-          RaisedButton(child: Text('Remove item'), onPressed: () {}),
+          RaisedButton(
+              child: Text('Remove item'),
+              onPressed: () {
+                removeItemFromCollection('publiclist');
+              }),
         ]),
       ),
       MultiStreamStateBuilder(
@@ -64,7 +68,11 @@ class Home extends StatelessWidget {
                 onPressed: () {
                   addItemToCollection('privilagedlist');
                 }),
-            RaisedButton(child: Text('Remove item'), onPressed: () {}),
+            RaisedButton(
+                child: Text('Remove item'),
+                onPressed: () {
+                  removeItemFromCollection('privilagedlist');
+                }),
           ],
         ),
       ),
