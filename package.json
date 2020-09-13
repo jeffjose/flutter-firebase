@@ -6,6 +6,10 @@
   "license": "MIT",
   "scripts": {
     "splash": "flutter pub pub run flutter_native_splash:create",
-    "icons": "flutter pub pub run flutter_launcher_icons:main"
+    "icons": "flutter pub pub run flutter_launcher_icons:main",
+    "clean": "flutter clean",
+    "dev": "flutter run",
+    "build": "yarn splash; yarn icons; yarn dev",
+    "pub": "flutter pub get"
   }
 }
