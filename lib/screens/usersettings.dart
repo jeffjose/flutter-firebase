@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:stream_state/stream_state.dart';
+import 'package:stream_state/stream_state_builder.dart';
 import '../stores/store.dart';
-
+import '../firebase/firebase.dart';
 import '../components/usersettingsitem.dart';
 import '../components/usersettingsheader.dart';
 
@@ -15,7 +16,6 @@ class UserSettings extends StatefulWidget {
 class _UserSettingsState extends State<UserSettings> {
   @override
   Widget build(BuildContext context) {
-    StreamState user = store.user;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -27,58 +27,82 @@ class _UserSettingsState extends State<UserSettings> {
           SliverList(
             delegate: SliverChildListDelegate([
               Container(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 15),
-                      child: Column(
+                child: StreamStateBuilder(
+                    streamState: store.user,
+                    builder: (_, _i) {
+                      return Row(
                         children: [
-                          CircleAvatar(
-                            radius: 40,
-                            child: ClipOval(
-                              child: (user.state != null)
-                                  ? Image.network(
-                                      user.state.photoURL,
-                                      width: 100,
-                                      height: 100,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Container(color: Colors.blue[300]),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 15),
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 40,
+                                  child: ClipOval(
+                                    child: (store.user.state != null)
+                                        ? Image.network(
+                                            store.user.state.photoURL,
+                                            width: 100,
+                                            height: 100,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : Container(color: Colors.blue[300]),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: (store.user.state != null)
+                                      ? Text(
+                                          store.user.state.displayName,
+                                        )
+                                      : Text(
+                                          'Anonymous',
+                                        ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 0),
+                                  child: RawMaterialButton(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 5, horizontal: 10),
+                                    constraints: BoxConstraints(),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(3),
+                                      side: BorderSide(
+                                        color: (store.user.state != null)
+                                            ? Colors.red[300]
+                                            : Colors.green[300],
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      if (store.user.state != null) {
+                                        signOut();
+                                      } else {
+                                        signInWithGoogle();
+                                      }
+                                    },
+                                    child: (store.user.state != null)
+                                        ? Text(
+                                            'Logout',
+                                            style: TextStyle(
+                                              color: Colors.red[300],
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )
+                                        : Text(
+                                            'Login',
+                                            style: TextStyle(
+                                              color: Colors.green[300],
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: (user.state != null)
-                                ? Text(
-                                    user.state.displayName,
-                                  )
-                                : Text(
-                                    'Anonymous',
-                                  ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: (user.state != null)
-                                ? Text(
-                                    'Logout',
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                : Text(
-                                    'Login',
-                                    style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                          ),
                         ],
-                      ),
-                    ),
-                  ],
-                ),
+                      );
+                    }),
                 color: Theme.of(context).primaryColorDark,
                 height: 170,
               ),

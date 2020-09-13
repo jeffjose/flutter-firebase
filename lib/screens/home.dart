@@ -18,16 +18,6 @@ class Home extends StatelessWidget {
       SliverList(
         delegate: SliverChildListDelegate([
           RaisedButton(
-              child: Text('Login'),
-              onPressed: () {
-                signInWithGoogle();
-              }),
-          RaisedButton(
-              child: Text('Logout'),
-              onPressed: () {
-                signOut();
-              }),
-          RaisedButton(
               child: Text('Switch theme'),
               onPressed: () {
                 store.darkMode.state = !store.darkMode.state;
