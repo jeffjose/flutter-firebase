@@ -12,9 +12,6 @@ import './firebase/firebase.dart';
 import './themes/theme.dart';
 
 import 'package:stream_state/stream_state_builder.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
