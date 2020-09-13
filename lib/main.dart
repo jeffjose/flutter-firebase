@@ -157,6 +157,7 @@ class _MainState extends State<Main> {
                   title: Text('')),
             ],
             selectedItemColor: Theme.of(context).accentColor,
+            unselectedItemColor: Theme.of(context).unselectedWidgetColor,
           ),
         ));
   }
