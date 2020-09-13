@@ -93,10 +93,10 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    AppTheme appTheme = store.theme.state;
-    store.darkMode.stream.listen((event) {
-      appTheme = store.theme.state;
-    });
+    //AppTheme appTheme = store.theme.state;
+    //store.darkMode.stream.listen((event) {
+    //  appTheme = store.theme.state;
+    //});
 
     return Scaffold(
         body: screens[index],
