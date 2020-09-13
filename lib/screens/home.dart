@@ -33,7 +33,11 @@ class Home extends StatelessWidget {
                 store.darkMode.state = !store.darkMode.state;
               }),
           Text('Public List', style: TextStyle(fontSize: 16)),
-          RaisedButton(child: Text('Add item'), onPressed: () {}),
+          RaisedButton(
+              child: Text('Add item'),
+              onPressed: () {
+                addItemToCollection('publiclist');
+              }),
           RaisedButton(child: Text('Remove item'), onPressed: () {}),
         ]),
       ),
@@ -55,7 +59,11 @@ class Home extends StatelessWidget {
         delegate: SliverChildListDelegate(
           [
             Text('Privilaged List', style: TextStyle(fontSize: 16)),
-            RaisedButton(child: Text('Add item'), onPressed: () {}),
+            RaisedButton(
+                child: Text('Add item'),
+                onPressed: () {
+                  addItemToCollection('privilagedlist');
+                }),
             RaisedButton(child: Text('Remove item'), onPressed: () {}),
           ],
         ),

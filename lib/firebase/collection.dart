@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -43,4 +44,22 @@ void collectionListener() {
 
     store.publicStore.state = retVal;
   });
+}
+
+void addItemToCollection(String collectionName) {
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection(collectionName);
+
+  User user = FirebaseAuth.instance.currentUser;
+
+  String string = "${collectionName} item (flutter) ${Random().nextInt(100)}";
+
+  if (collectionName == "privilagedlist") {
+    if (user != null) {
+      collection.add({'name': string, 'user': user.uid});
+    }
+  } else {
+    collection
+        .add({'name': string, 'user': (user != null) ? user.uid : "anon"});
+  }
 }
