@@ -124,15 +124,20 @@ class _MainState extends State<Main> {
                         builder: (_, _i) {
                           if (store.user.state != null) {
                             return CircleAvatar(
-                              radius: 15,
+                              radius: 17,
                               child: Container(
                                 padding: EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   color:
                                       store.theme.state.appBarBackgroundColor,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  //border: Border.all(color: Colors.red, width: 0),
+                                      BorderRadius.all(Radius.circular(17)),
+                                  border: (index == 2)
+                                      ? Border.all(
+                                          color: Theme.of(context).accentColor,
+                                          width: 2)
+                                      : Border.all(
+                                          color: Colors.transparent, width: 2),
                                 ),
                                 child: Container(
                                   decoration: BoxDecoration(

@@ -46,7 +46,11 @@ class _UserSettingsState extends State<UserSettings> {
                                             height: 100,
                                             fit: BoxFit.cover,
                                           )
-                                        : Container(color: Colors.blue[300]),
+                                        : Icon(
+                                            Icons.account_circle,
+                                            size: 80,
+                                            color: Colors.green[300],
+                                          ),
                                   ),
                                 ),
                                 Padding(
