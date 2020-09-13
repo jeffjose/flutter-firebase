@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/stores/store.dart';
+import '../stores/store.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';

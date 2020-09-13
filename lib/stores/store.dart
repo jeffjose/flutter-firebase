@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stream_state/stream_state.dart';
-import 'package:flutter_firebase/themes/theme.dart';
+import '../themes/theme.dart';
 
 class AppTheme {
   final Color backgroundColor;

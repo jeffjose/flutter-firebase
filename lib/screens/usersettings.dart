@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:stream_state/stream_state.dart';
-import 'package:flutter_firebase/stores/store.dart';
+import '../stores/store.dart';
 
-import 'package:flutter_firebase/components/usersettingsitem.dart';
-import 'package:flutter_firebase/components/usersettingsheader.dart';
+import '../components/usersettingsitem.dart';
+import '../components/usersettingsheader.dart';
 
 class UserSettings extends StatefulWidget {
   @override

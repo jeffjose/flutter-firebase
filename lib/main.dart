@@ -3,13 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:stream_state/stream_state.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
-import 'package:flutter_firebase/screens/home.dart';
-import 'package:flutter_firebase/screens/usersettings.dart';
-import 'package:flutter_firebase/screens/chat.dart';
+import './screens/home.dart';
+import './screens/usersettings.dart';
+import './screens/chat.dart';
 
-import 'package:flutter_firebase/stores/store.dart';
-import 'package:flutter_firebase/firebase/firebase.dart';
-import 'package:flutter_firebase/themes/theme.dart';
+import './stores/store.dart';
+import './firebase/firebase.dart';
+import './themes/theme.dart';
 
 import 'package:stream_state/stream_state_builder.dart';
 import 'package:google_sign_in/google_sign_in.dart';
