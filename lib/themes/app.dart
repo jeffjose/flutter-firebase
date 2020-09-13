@@ -41,8 +41,9 @@ ThemeData getDarkModeTheme(BuildContext context) {
             subtitle1: TextStyle(color: Colors.blue),
             subtitle2: TextStyle(color: Colors.blue),
             bodyText1: TextStyle(color: darkPrimaryLightest), // Settings Item
-            bodyText2: TextStyle(color: Colors.white), // Vanilla text
-            caption: TextStyle(color: darkPrimaryLightest),
+            bodyText2: TextStyle(color: darkPrimaryLightest), // Vanilla text
+            caption:
+                TextStyle(color: darkPrimaryLightest), // Settings Item Header
             button: TextStyle(color: Colors.red),
             overline: TextStyle(color: Colors.red),
           ),
@@ -69,9 +70,27 @@ ThemeData getLightModeTheme(BuildContext context) {
     //cardColor: Color(0xaaF5E0C3),
     //dividerColor: Color(0x1f6D42CE),
     //focusColor: Color(0x1aF5E0C3),
-    textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme.apply(
-          bodyColor: Colors.black87,
-        )),
+    textTheme: GoogleFonts.interTextTheme(
+      Theme.of(context).textTheme.copyWith(
+            headline1: TextStyle(color: Colors.blue),
+            headline2: TextStyle(color: Colors.blue),
+            headline3: TextStyle(color: Colors.blue),
+            headline4: TextStyle(color: Colors.blue),
+            headline5: TextStyle(color: Colors.orange),
+            headline6: TextStyle(color: Colors.black), // App Bar
+            subtitle1: TextStyle(color: Colors.blue),
+            subtitle2: TextStyle(color: Colors.blue),
+            bodyText1: TextStyle(color: Colors.black87), // Settings Item
+            bodyText2: TextStyle(color: Colors.black), // Vanilla text
+            caption: TextStyle(color: Colors.black87), // Settings Item Header
+            button: TextStyle(color: Colors.red),
+            overline: TextStyle(color: Colors.red),
+          ),
+    ),
+    // TODO
+    buttonColor: Colors.grey,
+    // TODO
+    iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.black54),
   );
 }
 
