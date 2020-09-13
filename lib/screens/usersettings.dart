@@ -43,7 +43,7 @@ class _UserSettingsState extends State<UserSettings> {
                                       height: 100,
                                       fit: BoxFit.cover,
                                     )
-                                  : Container(color: Colors.blue),
+                                  : Container(color: Colors.blue[300]),
                             ),
                           ),
                           Padding(
@@ -59,8 +59,20 @@ class _UserSettingsState extends State<UserSettings> {
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: (user.state != null)
-                                ? Text('Logout')
-                                : Text('Login'),
+                                ? Text(
+                                    'Logout',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                : Text(
+                                    'Login',
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                           ),
                         ],
                       ),
