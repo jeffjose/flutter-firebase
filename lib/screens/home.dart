@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 store.darkMode.state = !store.darkMode.state;
               }),
-          Text('Privilaged List', style: TextStyle(fontSize: 16)),
+          Text('Public List', style: TextStyle(fontSize: 16)),
           RaisedButton(child: Text('Add item'), onPressed: () {}),
           RaisedButton(child: Text('Remove item'), onPressed: () {}),
         ]),
