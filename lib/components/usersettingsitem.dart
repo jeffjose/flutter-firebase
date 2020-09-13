@@ -9,16 +9,22 @@ class UserSettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 50,
+        height: 60,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(15),
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 25),
+                padding: const EdgeInsets.only(right: 30),
                 child: Icon(icon),
               ),
-              Text(text),
+              Text(
+                text,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .copyWith(fontSize: 16),
+              ),
             ],
           ),
         ));

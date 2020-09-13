@@ -9,7 +9,7 @@ class UserSettingsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 13),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Text(
           text,
           style: Theme.of(context)

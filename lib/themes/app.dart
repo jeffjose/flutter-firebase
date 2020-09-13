@@ -36,15 +36,12 @@ ThemeData getDarkModeTheme(BuildContext context) {
             headline2: TextStyle(color: Colors.blue),
             headline3: TextStyle(color: Colors.blue),
             headline4: TextStyle(color: Colors.blue),
-            headline5: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ), // User Settings Display Name
-            headline6: TextStyle(color: Colors.white),
+            headline5: TextStyle(color: Colors.orange),
+            headline6: TextStyle(color: Colors.white), // App Bar
             subtitle1: TextStyle(color: Colors.blue),
             subtitle2: TextStyle(color: Colors.blue),
-            bodyText1: TextStyle(color: Colors.orange),
-            bodyText2: TextStyle(color: Colors.white),
+            bodyText1: TextStyle(color: darkPrimaryLightest), // Settings Item
+            bodyText2: TextStyle(color: Colors.white), // Vanilla text
             caption: TextStyle(color: darkPrimaryLightest),
             button: TextStyle(color: Colors.red),
             overline: TextStyle(color: Colors.red),

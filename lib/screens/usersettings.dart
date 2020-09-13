@@ -51,10 +51,10 @@ class _UserSettingsState extends State<UserSettings> {
                             child: (user.state != null)
                                 ? Text(
                                     user.state.displayName,
-                                    style:
-                                        Theme.of(context).textTheme.headline5,
                                   )
-                                : Text('Anonymous'),
+                                : Text(
+                                    'Anonymous',
+                                  ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
