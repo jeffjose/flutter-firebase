@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import '../stores/store.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,14 +19,14 @@ ThemeData getDarkModeTheme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme(
       primary: Colors.pink,
-      onError: Colors.teal,
-      onSecondary: Colors.orange,
-      secondary: Colors.blue,
-      primaryVariant: Colors.blueAccent,
+      onError: Colors.purple,
+      onSecondary: darkAccent, // Icon inside FAB
+      secondary: Colors.black,
+      primaryVariant: Colors.black,
       secondaryVariant: Colors.amberAccent,
       error: Colors.yellowAccent,
       onBackground: Colors.black,
-      onSurface: Colors.blueGrey,
+      onSurface: Colors.black,
       brightness: Brightness.dark,
       surface: Colors.brown,
       background: Colors.red,
@@ -49,13 +50,13 @@ ThemeData getDarkModeTheme(BuildContext context) {
     textTheme: GoogleFonts.interTextTheme(
       Theme.of(context).textTheme.copyWith(
             headline1: TextStyle(color: Colors.red),
-            headline2: TextStyle(color: Colors.blue),
-            headline3: TextStyle(color: Colors.blue),
-            headline4: TextStyle(color: Colors.blue),
+            headline2: TextStyle(color: Colors.red),
+            headline3: TextStyle(color: Colors.red),
+            headline4: TextStyle(color: Colors.red),
             headline5: TextStyle(color: Colors.orange),
             headline6: TextStyle(color: Colors.white), // App Bar
-            subtitle1: TextStyle(color: Colors.blue),
-            subtitle2: TextStyle(color: Colors.blue),
+            subtitle1: TextStyle(color: Colors.red),
+            subtitle2: TextStyle(color: Colors.red),
             bodyText1: TextStyle(color: darkPrimaryLightest), // Settings Item
             bodyText2: TextStyle(color: darkPrimaryLightest), // Vanilla text
             caption:
@@ -64,8 +65,10 @@ ThemeData getDarkModeTheme(BuildContext context) {
             overline: TextStyle(color: Colors.red),
           ),
     ),
-    //buttonColor: darkPrimaryLighter,
-    //iconTheme: Theme.of(context).iconTheme.copyWith(color: darkPrimaryLightest),
+    buttonColor: darkPrimaryLighter, // RaisedButton
+    iconTheme: Theme.of(context).iconTheme.copyWith(
+          color: darkPrimaryLightest,
+        ),
 
     //splashColor: Colors.black12,
     //highlightColor: Colors.transparent,

@@ -17,11 +17,7 @@ class Home extends StatelessWidget {
           ),
       SliverList(
         delegate: SliverChildListDelegate([
-          RaisedButton(
-              child: Text('Switch theme'),
-              onPressed: () {
-                store.darkMode.state = !store.darkMode.state;
-              }),
+          SizedBox(height: 30),
           Text('Public List', style: Theme.of(context).textTheme.headline6),
           RaisedButton(
               child: Text('Add item'),

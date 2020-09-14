@@ -8,4 +8,4 @@ Color materialColorLightest = Color(0xffF7FAFC); // Replacement for white?
 Color materialColorDark =
     Color(0xff121212); // Ideally darker than materialColor
 
-Color materialAccent = Color(0xff464646); // grey
+Color materialAccent = Colors.orange;

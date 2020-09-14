@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../stores/store.dart';
+
 class ThemePage extends StatelessWidget {
   const ThemePage();
 
@@ -82,19 +84,11 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: null,
       actions: [
         IconButton(
-          icon: const Icon(Icons.share),
-          tooltip: "starter app tooltip share",
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.favorite),
-          tooltip: "starterapptooltip favorite",
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.search),
+          icon: const Icon(Icons.invert_colors),
           tooltip: "tooltip search",
-          onPressed: () {},
+          onPressed: () {
+            store.darkMode.state = !store.darkMode.state;
+          },
         ),
       ],
     );
