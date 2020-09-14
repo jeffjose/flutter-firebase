@@ -25,6 +25,7 @@ dependencies:
   path_provider:
   google_fonts:
   flutter_statusbarcolor:
+  animations:
 
 dev_dependencies:
   pedantic:

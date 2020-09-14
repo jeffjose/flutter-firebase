@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_firebase/screens/usersettings/developer.dart';
 import 'package:stream_state/stream_state_builder.dart';
 import '../stores/store.dart';
 import '../firebase/firebase.dart';
-import '../components/usersettingsitem.dart';
 import '../components/usersettingsheader.dart';
+import '../components/usersettingsitem.dart';
+import '../components/usersettingsitemcheckbox.dart';
+import './usersettings/developer.dart';
 
 class UserSettings extends StatefulWidget {
   @override
@@ -54,12 +55,8 @@ class _UserSettingsState extends State<UserSettings> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10.0),
                                   child: (store.user.state != null)
-                                      ? Text(
-                                          store.user.state.displayName,
-                                        )
-                                      : Text(
-                                          'Anonymous',
-                                        ),
+                                      ? Text(store.user.state.displayName)
+                                      : Text('Anonymous'),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 0),
@@ -113,21 +110,35 @@ class _UserSettingsState extends State<UserSettings> {
           SliverList(
             delegate: SliverChildListDelegate([
               UserSettingsHeader('APPEARENCE'),
-              UserSettingsItem(Icons.palette, 'Dark Mode'),
+              UserSettingsItemCheckbox(
+                  Icons.palette, 'Dark Mode', store.darkMode),
               UserSettingsHeader('APP SETTINGS'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
-              UserSettingsItem(Icons.brush, 'Dark Mode'),
+              UserSettingsItem(
+                  Icons.code, 'Developer settings', UserSettingsDeveloper()),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(
+                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
             ]),
           ),
         ],
