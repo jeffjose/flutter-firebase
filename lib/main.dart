@@ -4,8 +4,9 @@ import 'package:stream_state/stream_state.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 import './screens/home.dart';
-import './screens/usersettings.dart';
 import './screens/chat.dart';
+import './screens/theme.dart';
+import './screens/usersettings.dart';
 
 import './stores/store.dart';
 import './firebase/firebase.dart';
@@ -89,7 +90,7 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   int index = 0;
 
-  List<Widget> screens = [Home(), Chat(), UserSettings()];
+  List<Widget> screens = [Home(), Chat(), ThemePage(), UserSettings()];
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +116,8 @@ class _MainState extends State<Main> {
                   ),
                   title: Text('')),
               BottomNavigationBarItem(
+                  icon: Icon(Icons.palette), title: Text('')),
+              BottomNavigationBarItem(
                   icon: InkResponse(
                     child: StreamStateBuilder(
                         streamState: store.user,
@@ -129,7 +132,7 @@ class _MainState extends State<Main> {
                                       store.theme.state.appBarBackgroundColor,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(17)),
-                                  border: (index == 2)
+                                  border: (index == 3)
                                       ? Border.all(
                                           color: Theme.of(context).accentColor,
                                           width: 2)

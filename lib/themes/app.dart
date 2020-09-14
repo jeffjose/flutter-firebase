@@ -16,6 +16,21 @@ Color darkAccent = materialAccent;
 ThemeData getDarkModeTheme(BuildContext context) {
   // Dark Mode Theme
   return ThemeData(
+    colorScheme: ColorScheme(
+      primary: Colors.pink,
+      onError: Colors.teal,
+      onSecondary: Colors.orange,
+      secondary: Colors.blue,
+      primaryVariant: Colors.blueAccent,
+      secondaryVariant: Colors.amberAccent,
+      error: Colors.yellowAccent,
+      onBackground: Colors.black,
+      onSurface: Colors.blueGrey,
+      brightness: Brightness.dark,
+      surface: Colors.brown,
+      background: Colors.red,
+      onPrimary: Colors.purple,
+    ),
     brightness: Brightness.dark,
     // Primary Colors
     primaryColor: darkPrimary,
@@ -25,14 +40,15 @@ ThemeData getDarkModeTheme(BuildContext context) {
     // Accent Colors
     accentColor: Colors.white,
     accentColorBrightness: Brightness.dark,
-    scaffoldBackgroundColor: darkPrimaryLight, // Lighter version of dark
-    canvasColor: darkPrimary,
+    scaffoldBackgroundColor:
+        darkPrimaryLight, // Lighter version of dark (main content area)
+    canvasColor: darkPrimary, // Bottom nav bar
     //cardColor: Color(0xaaF5E0C3),
     //dividerColor: Color(0x1f6D42CE),
     //focusColor: Color(0x1aF5E0C3),
     textTheme: GoogleFonts.interTextTheme(
       Theme.of(context).textTheme.copyWith(
-            headline1: TextStyle(color: Colors.blue),
+            headline1: TextStyle(color: Colors.red),
             headline2: TextStyle(color: Colors.blue),
             headline3: TextStyle(color: Colors.blue),
             headline4: TextStyle(color: Colors.blue),
@@ -48,11 +64,11 @@ ThemeData getDarkModeTheme(BuildContext context) {
             overline: TextStyle(color: Colors.red),
           ),
     ),
-    buttonColor: darkPrimaryLighter,
-    iconTheme: Theme.of(context).iconTheme.copyWith(color: darkPrimaryLightest),
+    //buttonColor: darkPrimaryLighter,
+    //iconTheme: Theme.of(context).iconTheme.copyWith(color: darkPrimaryLightest),
 
-    splashColor: Colors.black12,
-    highlightColor: Colors.transparent,
+    //splashColor: Colors.black12,
+    //highlightColor: Colors.transparent,
   );
 }
 

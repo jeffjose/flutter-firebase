@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 store.darkMode.state = !store.darkMode.state;
               }),
-          Text('Public List', style: TextStyle(fontSize: 16)),
+          Text('Public List', style: Theme.of(context).textTheme.headline6),
           RaisedButton(
               child: Text('Add item'),
               onPressed: () {
@@ -52,7 +52,8 @@ class Home extends StatelessWidget {
       SliverList(
         delegate: SliverChildListDelegate(
           [
-            Text('Privilaged List', style: TextStyle(fontSize: 16)),
+            Text('Privilaged List',
+                style: Theme.of(context).textTheme.headline6),
             RaisedButton(
                 child: Text('Add item'),
                 onPressed: () {

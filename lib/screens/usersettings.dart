@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:stream_state/stream_state.dart';
 import 'package:stream_state/stream_state_builder.dart';
 import '../stores/store.dart';
 import '../firebase/firebase.dart';
@@ -22,8 +21,7 @@ class _UserSettingsState extends State<UserSettings> {
           SliverAppBar(
               pinned: true,
               title: Text('User Settings',
-                  style: GoogleFonts.inter(
-                      textStyle: Theme.of(context).textTheme.headline6))),
+                  style: Theme.of(context).textTheme.headline6)),
           SliverList(
             delegate: SliverChildListDelegate([
               Container(
