@@ -5,7 +5,7 @@
 - [x] [Firestore](https://firebase.google.com/docs/firestore) with [rxjs](https://pub.dev/packages/rxdart)
 - [x] [stream_state](https://pub.dev/packages/stream_state)
 
-## Setup native splash screen
+## Setup native splash screen and launcher icons
 
 ```
 # For splash screen (config in pubspec.yaml)
