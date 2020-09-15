@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import '../../components/usersettingsitem.dart';
 
@@ -17,11 +18,16 @@ class _UserSettingsDeveloperState extends State<UserSettingsDeveloper> {
                 style: Theme.of(context).textTheme.headline6)),
         SliverList(
           delegate: SliverChildListDelegate([
-            UserSettingsItem(Icons.code, 'Setting 1', Container()),
-            UserSettingsItem(Icons.code, 'Setting 1', Container()),
-            UserSettingsItem(Icons.code, 'Setting 1', Container()),
-            UserSettingsItem(Icons.code, 'Setting 1', Container()),
-            UserSettingsItem(Icons.code, 'Setting 1', Container()),
+            UserSettingsItem(Icons.code, 'Setting 1', Container(),
+                SharedAxisTransitionType.horizontal),
+            UserSettingsItem(Icons.code, 'Setting 1', Container(),
+                SharedAxisTransitionType.horizontal),
+            UserSettingsItem(Icons.code, 'Setting 1', Container(),
+                SharedAxisTransitionType.horizontal),
+            UserSettingsItem(Icons.code, 'Setting 1', Container(),
+                SharedAxisTransitionType.horizontal),
+            UserSettingsItem(Icons.code, 'Setting 1', Container(),
+                SharedAxisTransitionType.horizontal),
           ]),
         )
       ]),

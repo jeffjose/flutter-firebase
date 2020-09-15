@@ -6,8 +6,9 @@ class UserSettingsItem extends StatelessWidget {
   final IconData icon;
   final String text;
   final Widget page;
+  final SharedAxisTransitionType transitionType;
 
-  UserSettingsItem(this.icon, this.text, this.page);
+  UserSettingsItem(this.icon, this.text, this.page, this.transitionType);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,7 @@ class UserSettingsItem extends StatelessWidget {
         Navigator.push(
           context,
           //MaterialPageRoute(builder: (context) => route),
-          SharedAxisPageRoute(
-              page: page, transitionType: SharedAxisTransitionType.horizontal),
+          SharedAxisPageRoute(page: page, transitionType: transitionType),
         );
       },
       child: Container(

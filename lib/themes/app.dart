@@ -53,7 +53,7 @@ ThemeData getDarkModeTheme(BuildContext context) {
             headline2: TextStyle(color: Colors.red),
             headline3: TextStyle(color: Colors.red),
             headline4: TextStyle(color: Colors.red),
-            headline5: TextStyle(color: Colors.orange),
+            headline5: TextStyle(color: Colors.white), // AppInfo()
             headline6: TextStyle(color: Colors.white), // App Bar
             subtitle1: TextStyle(color: Colors.red),
             subtitle2: TextStyle(color: Colors.red),
@@ -98,7 +98,7 @@ ThemeData getLightModeTheme(BuildContext context) {
             headline2: TextStyle(color: Colors.blue),
             headline3: TextStyle(color: Colors.blue),
             headline4: TextStyle(color: Colors.blue),
-            headline5: TextStyle(color: Colors.orange),
+            headline5: TextStyle(color: Colors.black), //AppInfo()
             headline6: TextStyle(color: Colors.black), // App Bar
             subtitle1: TextStyle(color: Colors.blue),
             subtitle2: TextStyle(color: Colors.blue),

@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/screens/usersettings/developer.dart';
 import 'package:stream_state/stream_state_builder.dart';
@@ -6,7 +7,9 @@ import '../firebase/firebase.dart';
 import '../components/usersettingsheader.dart';
 import '../components/usersettingsitem.dart';
 import '../components/usersettingsitemcheckbox.dart';
+
 import './usersettings/developer.dart';
+import './usersettings/appinfo.dart';
 
 class UserSettings extends StatefulWidget {
   @override
@@ -111,34 +114,12 @@ class _UserSettingsState extends State<UserSettings> {
             delegate: SliverChildListDelegate([
               UserSettingsHeader('APPEARENCE'),
               UserSettingsItemCheckbox(
-                  Icons.palette, 'Dark Mode', store.darkMode),
+                  Icons.palette_outlined, 'Dark Mode', store.darkMode),
               UserSettingsHeader('APP SETTINGS'),
-              UserSettingsItem(
-                  Icons.code, 'Developer settings', UserSettingsDeveloper()),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
-              UserSettingsItem(
-                  Icons.brush, 'Dark Mode', Scaffold(body: Container())),
+              UserSettingsItem(Icons.code_outlined, 'Developer settings',
+                  UserSettingsDeveloper(), SharedAxisTransitionType.horizontal),
+              UserSettingsItem(Icons.info_outline, 'App Info', AppInfo(),
+                  SharedAxisTransitionType.scaled),
             ]),
           ),
         ],
