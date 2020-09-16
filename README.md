@@ -13,5 +13,4 @@ flutter pub pub run flutter_native_splash:create
 
 # For launcher icons (config in pubspec.yaml)
 flutter pub run flutter_launcher_icons:main
-
 ```

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stream_state/stream_state.dart';
@@ -9,11 +10,12 @@ class AppTheme {
   final Color appBarColor;
   final Color appBarBackgroundColor;
 
-  AppTheme(
-      {this.backgroundColor,
-      this.bodyColor,
-      this.appBarBackgroundColor,
-      this.appBarColor});
+  AppTheme({
+    this.backgroundColor,
+    this.bodyColor,
+    this.appBarBackgroundColor,
+    this.appBarColor,
+  });
 }
 
 class PublicListItem {
@@ -62,9 +64,10 @@ class Store {
   var email = StreamState<String>(initial: 'none');
   var publicStore = StreamState<List<PublicListItem>>(
     initial: [],
-    //serialize: (state) => state.toMap(),
-    //deserialize: (serialized) => PublicListItem.fromMap(serialized)
+    //serialize: (state) => jsonEncode(state),
+    //deserialize: (str) => jsonDecode(str),
   );
+
   var privilagedStore = StreamState<List<PrivilagedListItem>>(
     initial: [],
     //serialize: (state) => state.toMap(),
@@ -73,7 +76,8 @@ class Store {
 
   var user = StreamState<User>(initial: null);
 
-  var darkMode = StreamState<bool>(initial: true);
+  var darkMode = StreamState<bool>(
+      initial: true, persist: true, persistPath: '/settings/darkmode');
 
   // Initialize with darkModeTheme
   var theme = StreamState<AppTheme>(initial: darkModeTheme);
