@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -15,6 +16,13 @@ authListener() {
     if (user != null) {
       print('login');
       store.user.state = user;
+
+      FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'uid': user.uid,
+        'displayName': user.displayName,
+        'email': user.email,
+        // TODO: Add more fields
+      });
     } else {
       print('logout');
       store.user.state = null;
