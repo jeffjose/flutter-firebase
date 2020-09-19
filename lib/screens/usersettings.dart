@@ -114,9 +114,9 @@ class _UserSettingsState extends State<UserSettings> {
             delegate: SliverChildListDelegate([
               UserSettingsHeader('APPEARENCE'),
               UserSettingsItemCheckbox(
-                  Icons.palette_outlined, 'Dark Mode', store.darkMode),
+                  Icons.palette, 'Dark Mode', store.darkMode),
               UserSettingsHeader('APP SETTINGS'),
-              UserSettingsItem(Icons.code_outlined, 'Developer settings',
+              UserSettingsItem(Icons.code, 'Developer settings',
                   UserSettingsDeveloper(), SharedAxisTransitionType.horizontal),
               UserSettingsItem(Icons.info_outline, 'App Info', AppInfo(),
                   SharedAxisTransitionType.scaled),
