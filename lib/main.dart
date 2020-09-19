@@ -77,10 +77,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     FlutterStatusbarcolor.setStatusBarColor(
         //store.theme.state.appBarBackgroundColor,
-        Colors.transparent);
+        Colors.transparent,
+        animate: false);
     FlutterStatusbarcolor.setNavigationBarColor(
         //store.theme.state.appBarBackgroundColor,
-        Colors.transparent);
+        Colors.transparent,
+        animate: false);
 
     return withMaterialApp(Center(child: Main()), context);
   }
