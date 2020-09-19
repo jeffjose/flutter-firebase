@@ -6,13 +6,12 @@
              Flutter draws its first frame -->
         <!-- This is the first (phase 1 of 3) color/bg that user sees -->
         <item name="android:windowBackground">@color/splash_color</item>
-        <!-- [jeffjose] Full screen during splash -->
-        <item name="android:navigationBarColor">@color/splash_color</item>
-        <item name="android:statusBarColor">@color/splash_color</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
 
-        <!-- enabling this causes a jump in phase 2 -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
     <!-- Theme applied to the Android Window as soon as the process has started.
          This theme determines the color of the Android Window while your
@@ -24,10 +23,9 @@
 
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowBackground">@drawable/launch_background</item>
-
-        <item name="android:statusBarColor">@color/splash_color</item>
-        <item name="android:navigationBarColor">@color/splash_color</item>
-
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightNavigationBar">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 

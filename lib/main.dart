@@ -24,7 +24,9 @@ void main() async {
     authListener();
     collectionListener();
 
-    // Required for statusbar and navbar theme switch.
+    // Was originally for statusbar and navbar theme switch
+    // but now they are set to transparent. This is still used
+    // by navbar "focus" circle around avatar
     // The full app theme is piped through `themeMode`
     themeListener();
   });
@@ -74,9 +76,11 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     FlutterStatusbarcolor.setStatusBarColor(
-        store.theme.state.appBarBackgroundColor);
+        //store.theme.state.appBarBackgroundColor,
+        Colors.transparent);
     FlutterStatusbarcolor.setNavigationBarColor(
-        store.theme.state.appBarBackgroundColor);
+        //store.theme.state.appBarBackgroundColor,
+        Colors.transparent);
 
     return withMaterialApp(Center(child: Main()), context);
   }
