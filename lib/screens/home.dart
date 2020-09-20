@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/notifications/notification.dart';
+import 'package:flutter_firebase/notifications/index.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../firebase/firebase.dart';
-import '../stores/store.dart';
+import '../firebase/index.dart';
+import '../stores/index.dart';
 import 'package:stream_state/stream_state_builder.dart';
 
 class Home extends StatelessWidget {

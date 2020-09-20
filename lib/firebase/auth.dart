@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:path_provider/path_provider.dart';
-import '../stores/store.dart';
+import '../stores/index.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 FirebaseAuth _auth = FirebaseAuth.instance;

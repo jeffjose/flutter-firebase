@@ -19,6 +19,7 @@ flutter pub run flutter_launcher_icons:main
 
 1. Run `yarn icons` and `yarn splash`
 2. Copy `logo.png` to `android/../drawable`
+3. Change package name `com.example.flutter-firebase` in `android/..`
 
 ## Acknowledgements
 

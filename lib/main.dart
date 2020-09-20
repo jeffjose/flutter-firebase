@@ -27,6 +27,7 @@ void main() async {
   Stream.fromFuture(_app).listen((app) {
     authListener();
     collectionListener();
+    messagingListener();
 
     // Was originally for statusbar and navbar theme switch
     // but now they are set to transparent. This is still used
