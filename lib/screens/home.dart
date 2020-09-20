@@ -9,6 +9,15 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: <Widget>[
       SliverAppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.invert_colors),
+              tooltip: "tooltip search",
+              onPressed: () {
+                store.darkMode.state = !store.darkMode.state;
+              },
+            ),
+          ],
           title: Text('Home',
               style: GoogleFonts.inter(
                   textStyle: Theme.of(context).textTheme.headline6))
