@@ -14,3 +14,12 @@ flutter pub pub run flutter_native_splash:create
 # For launcher icons (config in pubspec.yaml)
 flutter pub run flutter_launcher_icons:main
 ```
+
+## Notes
+
+1. Run `yarn icons` and `yarn splash`
+2. Copy `logo.png` to `android/../drawable`
+
+## Acknowledgements
+
+- Flutter Notifications based on https://github.com/brains-and-beards/flutter-reminders-app

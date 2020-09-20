@@ -26,6 +26,7 @@ dependencies:
   google_fonts:
   flutter_statusbarcolor:
   animations:
+  flutter_local_notifications:
 
 dev_dependencies:
   pedantic:
@@ -37,7 +38,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/profile.png
     - assets/logo.png
 
 flutter_native_splash:

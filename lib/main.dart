@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:stream_state/stream_state.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import './screens/home.dart';
 import './screens/chat.dart';
@@ -12,8 +13,11 @@ import './stores/store.dart';
 import './firebase/firebase.dart';
 import './themes/theme.dart';
 
+import './notifications/notification.dart';
+
 import 'package:stream_state/stream_state_builder.dart';
 
+NotificationAppLaunchDetails notificationAppLaunchDetails;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initStreamStatePersist();
@@ -30,6 +34,8 @@ void main() async {
     // The full app theme is piped through `themeMode`
     themeListener();
   });
+
+  await initNotifications();
 
   await _app;
 
@@ -115,14 +121,13 @@ class _MainState extends State<Main> {
             showSelectedLabels: false,
             showUnselectedLabels: false,
             items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('')),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.chat_bubble,
                   ),
-                  title: Text('')),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.palette), title: Text('')),
+                  label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.palette), label: ''),
               BottomNavigationBarItem(
                   icon: InkResponse(
                     child: StreamStateBuilder(
@@ -165,7 +170,7 @@ class _MainState extends State<Main> {
                           }
                         }),
                   ),
-                  title: Text('')),
+                  label: ''),
             ],
             selectedItemColor: Theme.of(context).accentColor,
             unselectedItemColor: Theme.of(context).unselectedWidgetColor,

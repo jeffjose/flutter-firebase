@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/notifications/notification.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../firebase/firebase.dart';
 import '../stores/store.dart';
@@ -26,6 +27,27 @@ class Home extends StatelessWidget {
           ),
       SliverList(
         delegate: SliverChildListDelegate([
+          SizedBox(height: 30),
+          Row(
+            children: [
+              RaisedButton(
+                  child: Text('Notification: now'),
+                  onPressed: () {
+                    showNotification('Hello World!', 'A message for you.');
+                  }),
+              RaisedButton(
+                  child: Text('Notification: 1min'),
+                  onPressed: () {
+                    var dt = DateTime.now();
+                    print('Scheduling for ${dt.add(Duration(minutes: 1))}');
+                    scheduleNotification(
+                      "myid",
+                      "foobar",
+                      dt.add(Duration(minutes: 1)),
+                    );
+                  }),
+            ],
+          ),
           SizedBox(height: 30),
           Text('Public List', style: Theme.of(context).textTheme.headline6),
           RaisedButton(
