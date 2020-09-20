@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../stores/store.dart';
+import '../stores/index.dart';
 
 void collectionListener() {
   FirebaseAuth.instance.authStateChanges().listen((user) {

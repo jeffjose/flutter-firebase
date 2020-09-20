@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stream_state/stream_state.dart';
-import '../themes/theme.dart';
+import '../themes/index.dart';
 
 class AppTheme {
   final Color backgroundColor;

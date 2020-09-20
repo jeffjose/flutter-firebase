@@ -9,11 +9,11 @@ import './screens/chat.dart';
 import './screens/theme.dart';
 import './screens/usersettings.dart';
 
-import './stores/store.dart';
-import './firebase/firebase.dart';
-import './themes/theme.dart';
+import 'stores/index.dart';
+import 'firebase/index.dart';
+import 'themes/index.dart';
 
-import './notifications/notification.dart';
+import 'notifications/index.dart';
 
 import 'package:stream_state/stream_state_builder.dart';
 
