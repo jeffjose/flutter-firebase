@@ -66,8 +66,13 @@ void _requestIOSPermissions() {
 
 Future<void> showNotification(String title, String body) async {
   var androidConfig = AndroidNotificationDetails(
-      '0', 'flutter-firebase-channel', 'flutter-firebae-channel description',
-      importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
+    '0',
+    'flutter-firebase-channel',
+    'flutter-firebase-channel description',
+    importance: Importance.Max,
+    priority: Priority.High,
+    ticker: 'ticker',
+  );
   var iOSConfig = IOSNotificationDetails();
 
   var details = NotificationDetails(androidConfig, iOSConfig);
@@ -85,27 +90,29 @@ Future<void> turnOffNotificationById(num id) async {
 }
 
 Future<void> scheduleNotification(
-    String id, String body, DateTime datetime) async {
+    String id, String title, String body, DateTime datetime) async {
   var androidConfig = AndroidNotificationDetails(
     id,
-    'Reminder notifications',
-    'Remember about it',
+    'flutter-firebase-channel',
+    'flutter-firebase-channel description',
+    icon: 'logo',
+  );
+  var iOSConfig = IOSNotificationDetails();
+
+  var details = NotificationDetails(androidConfig, iOSConfig);
+
+  await Notifications.schedule(0, title, body, datetime, details);
+}
+
+Future<void> scheduleNotificationPeriodically(
+    String id, String title, String body, RepeatInterval interval) async {
+  var androidConfig = AndroidNotificationDetails(
+    id,
+    'flutter-firebase-channel',
+    'flutter-firebase-channel description',
     icon: 'logo',
   );
   var iOSConfig = IOSNotificationDetails();
   var details = NotificationDetails(androidConfig, iOSConfig);
-  await Notifications.schedule(0, 'Reminder', body, datetime, details);
-}
-
-Future<void> scheduleNotificationPeriodically(
-    String id, String body, RepeatInterval interval) async {
-  var androidConfig = AndroidNotificationDetails(
-    id,
-    'Reminder notifications',
-    'Remember about it',
-    icon: 'smile_icon',
-  );
-  var iOSConfig = IOSNotificationDetails();
-  var details = NotificationDetails(androidConfig, iOSConfig);
-  await Notifications.periodicallyShow(0, 'Reminder', body, interval, details);
+  await Notifications.periodicallyShow(0, title, body, interval, details);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/notifications/index.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../firebase/index.dart';
 import '../stores/index.dart';
@@ -31,19 +32,35 @@ class Home extends StatelessWidget {
           Row(
             children: [
               RaisedButton(
-                  child: Text('Notification: now'),
+                  child: Text('now'),
                   onPressed: () {
+                    print('Showing notification now');
                     showNotification('Hello World!', 'A message for you.');
                   }),
               RaisedButton(
-                  child: Text('Notification: 1min'),
+                  child: Text('in 1min'),
                   onPressed: () {
-                    var dt = DateTime.now();
-                    print('Scheduling for ${dt.add(Duration(minutes: 1))}');
+                    DateTime _dt = DateTime.now();
+                    DateTime dt = _dt.add(Duration(minutes: 1));
+
+                    print('Scheduling for $dt');
                     scheduleNotification(
                       "myid",
-                      "foobar",
-                      dt.add(Duration(minutes: 1)),
+                      "title",
+                      "Scheduled for ${dt.toString()}",
+                      dt,
+                    );
+                  }),
+              RaisedButton(
+                  child: Text('every 1min'),
+                  onPressed: () {
+                    var interval = RepeatInterval.EveryMinute;
+                    print('Scheduling for every min');
+                    scheduleNotificationPeriodically(
+                      "myid",
+                      "title",
+                      "Scheduled for every min",
+                      interval,
                     );
                   }),
             ],
