@@ -54,6 +54,7 @@ void addItemToCollection(String collectionName) {
 
   String string = "${collectionName} item (flutter) ${Random().nextInt(100)}";
 
+  print('$collectionName: Adding item');
   if (collectionName == "privilagedlist") {
     if (user != null) {
       collection.add({'name': string, 'user': user.uid});
@@ -71,12 +72,12 @@ void removeItemFromCollection(String collectionName) {
   User user = FirebaseAuth.instance.currentUser;
 
   if ((user != null) || collectionName == "publiclist") {
+    print('$collectionName: Removing item');
     collection
         .orderBy(FieldPath.documentId)
         .limit(1)
         .get()
         .then((QuerySnapshot snapshot) {
-      print(snapshot.docs[0]);
       snapshot.docs[0].reference.delete();
     });
   }
