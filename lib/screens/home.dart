@@ -55,7 +55,8 @@ class Home extends StatelessWidget {
                   child: Text('every 1min'),
                   onPressed: () {
                     var interval = RepeatInterval.EveryMinute;
-                    print('Scheduling for every min');
+                    DateTime _dt = DateTime.now();
+                    print('Scheduling for every min. Timenow: $_dt');
                     scheduleNotificationPeriodically(
                       "myid",
                       "title",
