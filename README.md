@@ -24,7 +24,7 @@ flutter pub run flutter_launcher_icons:main
 3. Change package name `com.example.flutter-firebase` in `android/..`
 4. To test FCM messaging, install `fcm-cli`, and get the FCM `TOKEN` from `flutter logs` after the app loads, and `SERVER_KEY` from **Settings > Cloud Messaging**
    ```
-   fcm send --server-key SERVER_KEY --to TOKEN --notification.title title --notification.body "`date`"
+   fcm send --server-key SERVER_KEY --to TOKEN --notification.title title --notification.body "`date`" --notification.click_action "FLUTTER_NOTIFICATION_CLICK"
    ```
 
 ## Acknowledgements
