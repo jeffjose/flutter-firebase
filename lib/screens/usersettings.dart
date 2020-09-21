@@ -79,7 +79,9 @@ class _UserSettingsState extends State<UserSettings> {
                                       if (store.user.state != null) {
                                         signOut();
                                       } else {
-                                        signInWithGoogle();
+                                        try {
+                                          signInWithGoogle();
+                                        } catch (e) {}
                                       }
                                     },
                                     child: (store.user.state != null)
