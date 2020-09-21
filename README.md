@@ -3,6 +3,8 @@
 - [x] Flutter
 - [x] [Firebase Auth](https://firebase.google.com/docs/auth) with [rxjs](https://pub.dev/packages/rxdart)
 - [x] [Firestore](https://firebase.google.com/docs/firestore) with [rxjs](https://pub.dev/packages/rxdart)
+- [x] [Firebase Messaging](https://firebase.google.com/docs/cloud-messaging) with [rxjs](https://pub.dev/packages/rxdart)
+- [x] [Local notifications](https://pub.dev/packages/flutter_local_notifications)
 - [x] [stream_state](https://pub.dev/packages/stream_state)
 
 ## Setup native splash screen and launcher icons
@@ -22,7 +24,7 @@ flutter pub run flutter_launcher_icons:main
 3. Change package name `com.example.flutter-firebase` in `android/..`
 4. To test FCM messaging, install `fcm-cli`, and get the FCM `TOKEN` from `flutter logs` after the app loads, and `SERVER_KEY` from **Settings > Cloud Messaging**
    ```
-   fcm send --server-key SERVER_KEY --to TOKEN --notification.title title --notification.body body
+   fcm send --server-key SERVER_KEY --to TOKEN --notification.title title --notification.body "`date`"
    ```
 
 ## Acknowledgements
