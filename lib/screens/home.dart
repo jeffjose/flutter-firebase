@@ -64,6 +64,12 @@ class Home extends StatelessWidget {
                       interval,
                     );
                   }),
+              RaisedButton(
+                  child: Text('Cancel All'),
+                  onPressed: () {
+                    print('Cancelling all');
+                    turnOffAllNotifications();
+                  }),
             ],
           ),
           SizedBox(height: 30),
