@@ -28,11 +28,14 @@ dependencies:
   flutter_statusbarcolor:
   animations:
   flutter_local_notifications:
+  to_string:
 
 dev_dependencies:
   pedantic:
   flutter_native_splash:
   flutter_launcher_icons:
+  to_string_generator:
+  build_runner:
   flutter_test:
     sdk: flutter
 

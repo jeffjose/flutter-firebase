@@ -5,8 +5,10 @@
   "author": "Jeffrey Jose <jeffjosejeff@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "splash": "flutter pub pub run flutter_native_splash:create",
-    "icons": "flutter pub pub run flutter_launcher_icons:main",
+    "create:splash": "flutter pub pub run flutter_native_splash:create",
+    "create:icons": "flutter pub pub run flutter_launcher_icons:main",
+    "create:models": "flutter pub pub run build_runner build",
+    "create:all": " yarn create:splash; yarn create:icons; yarn create:models",
     "clean": "flutter clean",
     "dev": "flutter run",
     "build": "yarn splash; yarn icons; yarn dev",

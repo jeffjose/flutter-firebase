@@ -1,3 +1,4 @@
+import 'package:rxdart/rxdart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -5,26 +6,27 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:path_provider/path_provider.dart';
 import '../stores/index.dart';
 
+import './messaging.dart';
+
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 FirebaseAuth _auth = FirebaseAuth.instance;
 
 authListener() {
-  FirebaseAuth.instance.authStateChanges().listen((user) {
-    print('[AUTH]: user changed');
-    print(user);
+  Rx.combineLatest2(FirebaseAuth.instance.authStateChanges(),
+      firebaseMessaging.getToken().asStream(), (user, deviceToken) {
+    return AppUser(user, deviceToken);
+  }).listen((user) {
+    print("[AUTH]: $user");
 
-    if (user != null) {
-      print('login');
+    if (user.uid != null) {
       store.user.state = user;
-
-      FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+      FirebaseFirestore.instance.collection('users').doc(user.uid).update({
         'uid': user.uid,
         'displayName': user.displayName,
         'email': user.email,
-        // TODO: Add more fields
+        'deviceTokens': FieldValue.arrayUnion([user.deviceToken]),
       });
     } else {
-      print('logout');
       store.user.state = null;
     }
   });

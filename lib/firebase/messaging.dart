@@ -1,11 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import './../notifications/index.dart';
-
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+final FirebaseMessaging firebaseMessaging = FirebaseMessaging();
 
 messagingListener() {
-  _firebaseMessaging.configure(
+  firebaseMessaging.configure(
     onMessage: (Map<String, dynamic> message) async {
       print("-----------------------------");
       print("onMessage: $message");
@@ -24,17 +22,16 @@ messagingListener() {
     },
   );
 
-  _firebaseMessaging.requestNotificationPermissions(
+  firebaseMessaging.requestNotificationPermissions(
       const IosNotificationSettings(
           sound: true, badge: true, alert: true, provisional: true));
-  _firebaseMessaging.onIosSettingsRegistered
+  firebaseMessaging.onIosSettingsRegistered
       .listen((IosNotificationSettings settings) {
     print("Settings registered: $settings");
   });
 
-  _firebaseMessaging.getToken().then((String token) {
-    assert(token != null);
-    print("Messaging token: $token");
+  firebaseMessaging.getToken().then((String deviceToken) {
+    print("Messaging token: $deviceToken");
   });
 }
 
