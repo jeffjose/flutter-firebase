@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/components/SharedAxisPageRoute.dart';
+import './SharedAxisPageRoute.dart';
 
 class UserSettingsItem extends StatelessWidget {
   final IconData icon;

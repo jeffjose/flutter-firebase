@@ -1,6 +1,5 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/screens/usersettings/developer.dart';
 import 'package:stream_state/stream_state_builder.dart';
 import '../stores/index.dart';
 import '../firebase/index.dart';
