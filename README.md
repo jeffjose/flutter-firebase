@@ -1,3 +1,9 @@
+<p>
+  <a href="#">
+    <img alt="A starter template for flutter-firebase" src="https://raw.github.com/jeffjose/flutter-firebase/master/banner.png">
+  </a>
+</p>
+
 # flutter-firebase starter template
 
 - [x] Flutter
