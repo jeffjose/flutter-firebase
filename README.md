@@ -9,7 +9,7 @@
 - [x] Flutter
 - [x] [Firebase Auth](https://firebase.google.com/docs/auth) with [rxjs](https://pub.dev/packages/rxdart)
 - [x] [Firestore](https://firebase.google.com/docs/firestore) with [rxjs](https://pub.dev/packages/rxdart)
-- [x] [Firebase Messaging](https://firebase.google.com/docs/cloud-messaging) with [rxjs](https://pub.dev/packages/rxdart)
+- [x] [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging) with [rxjs](https://pub.dev/packages/rxdart)
 - [x] [Firebase Functions](https://firebase.google.com/docs/functions)
 - [x] [Local notifications](https://pub.dev/packages/flutter_local_notifications)
 - [x] [stream_state](https://pub.dev/packages/stream_state)
