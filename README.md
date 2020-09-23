@@ -26,10 +26,11 @@ flutter pub run flutter_launcher_icons:main
 
 ## Notes
 
-1. Run `yarn icons` and `yarn splash`
-2. Copy `logo.png` to `android/../drawable`
-3. Change package name `com.example.flutter-firebase` in `android/..`
-4. To test FCM messaging, install `fcm-cli`, and get the FCM `TOKEN` from `flutter logs` after the app loads, and `SERVER_KEY` from **Settings > Cloud Messaging**
+1. Rename folder in `src/main/{java,kotlin}/com.example/flutter_firebase` to `src/main/{java,kotlin}/YOUR_PACKAGE_NAME`
+2. Run `yarn icons` and `yarn splash`
+3. Copy `logo.png` to `android/../drawable`
+4. Change package name `com.example.flutter-firebase` in `android/..`
+5. To test FCM messaging, install `fcm-cli`, and get the FCM `TOKEN` from `flutter logs` after the app loads, and `SERVER_KEY` from **Settings > Cloud Messaging**
    ```
    fcm send --server-key SERVER_KEY --to TOKEN --notification.title title --notification.body "`date`" --notification.click_action "FLUTTER_NOTIFICATION_CLICK"
    ```
