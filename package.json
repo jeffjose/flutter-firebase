@@ -7,7 +7,7 @@
   "scripts": {
     "create:splash": "flutter pub pub run flutter_native_splash:create",
     "create:icons": "flutter pub pub run flutter_launcher_icons:main",
-    "create:models": "flutter pub pub run build_runner build",
+    "create:models": "flutter pub pub run build_runner build --delete-conflicting-outputs",
     "create:all": " yarn create:splash; yarn create:icons; yarn create:models",
     "clean": "flutter clean",
     "dev": "flutter run",

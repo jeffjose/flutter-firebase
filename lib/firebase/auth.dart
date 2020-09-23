@@ -34,7 +34,13 @@ authListener() {
 }
 
 signInWithGoogle() async {
-  GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+  try {
+    GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+  } catch (e) {
+    print(
+        "[AUTH]: Google SignIn error. Have you forgotten to register the app in Firebase?");
+    rethrow;
+  }
 
   GoogleSignInAuthentication googleAuth = await googleUser.authentication;
   final AuthCredential credential = GoogleAuthProvider.credential(
