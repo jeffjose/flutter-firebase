@@ -27,7 +27,7 @@ flutter pub run flutter_launcher_icons:main
 ## Notes
 
 1. Rename folder in `src/main/{java,kotlin}/com.example/flutter_firebase` to `src/main/{java,kotlin}/YOUR_PACKAGE_NAME`
-2. Register the app in Firebase and download `google-services.json` to `android/app`
+2. Register the app in Firebase and download `google-services.json` to `android/app` and update SHA1 and SHA256 (get previously generated values using
 3. Run `yarn icons` and `yarn splash`
 4. Copy `logo.png` to `android/../drawable`
 5. Change package name `com.example.flutter-firebase` in `android/..`
