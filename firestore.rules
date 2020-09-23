@@ -4,12 +4,15 @@ service cloud.firestore {
     match /publiclist/{documentId} {
       allow read, write;
     }
-
     match /privilagedlist/{documentId} {
       allow read, write : if request.auth.uid !=null
     }
 
     match /users/{documentId} {
+      allow read, write : if request.auth.uid !=null
+    }
+
+    match /babies/{documentId} {
       allow read, write : if request.auth.uid !=null
     }
   }
