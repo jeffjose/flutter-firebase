@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:path_provider/path_provider.dart';
 import '../stores/index.dart';
+import '../models/index.dart';
 
 import './messaging.dart';
 

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../stores/index.dart';
+import '../models/index.dart';
 
 void collectionListener() {
   FirebaseAuth.instance.authStateChanges().listen((user) {
