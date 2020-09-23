@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:to_string/to_string.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'index.g.dart';
 
@@ -53,6 +54,8 @@ class AppTheme {
   });
 }
 
+@ToString()
+@JsonSerializable()
 class PublicListItem {
   final String name;
   final String user;
@@ -62,16 +65,18 @@ class PublicListItem {
     this.user,
   });
 
-  PublicListItem.fromMap(dynamic map)
-      : name = map['name'],
-        user = map['user'];
+  factory PublicListItem.fromJson(Map<String, dynamic> json) =>
+      _$PublicListItemFromJson(json);
+  Map<String, dynamic> toJson() => _$PublicListItemToJson(this);
 
-  Map<String, dynamic> toMap() => {
-        'name': name,
-        'user': user,
-      };
+  @override
+  String toString() {
+    return _$PublicListItemToString(this);
+  }
 }
 
+@ToString()
+@JsonSerializable()
 class PrivilagedListItem {
   final String name;
   final String user;
@@ -81,12 +86,12 @@ class PrivilagedListItem {
     this.user,
   });
 
-  PrivilagedListItem.fromMap(dynamic map)
-      : name = map['name'],
-        user = map['user'];
+  factory PrivilagedListItem.fromJson(Map<String, dynamic> json) =>
+      _$PrivilagedListItemFromJson(json);
+  Map<String, dynamic> toJson() => _$PrivilagedListItemToJson(this);
 
-  Map<String, dynamic> toMap() => {
-        'name': name,
-        'user': user,
-      };
+  @override
+  String toString() {
+    return _$PrivilagedListItemToString(this);
+  }
 }
