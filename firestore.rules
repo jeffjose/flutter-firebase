@@ -5,11 +5,15 @@ service cloud.firestore {
       allow read, write;
     }
     match /privilagedlist/{documentId} {
-      allow read, write : if request.auth.uid !=null
+      allow read: if request.auth.uid !=null
+      allow create, update:
+          if request.resource.data.uid == request.auth.uid;
     }
 
     match /users/{documentId} {
-      allow read, write : if request.auth.uid !=null
+      allow read: if request.auth.uid !=null
+      allow create, update:
+          if request.resource.data.uid == request.auth.uid;
     }
 
     match /babies/{documentId} {
