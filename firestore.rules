@@ -15,5 +15,9 @@ service cloud.firestore {
     match /babies/{documentId} {
       allow read, write : if request.auth.uid !=null
     }
+
+    match /babyevents/{documentId} {
+      allow read, write : if request.auth.uid !=null
+    }
   }
 }
