@@ -13,20 +13,48 @@ GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 FirebaseAuth _auth = FirebaseAuth.instance;
 
 authListener() {
-  Rx.combineLatest2(FirebaseAuth.instance.authStateChanges(),
-      firebaseMessaging.getToken().asStream(), (user, deviceToken) {
-    return AppUser(user, deviceToken);
-  }).listen((user) {
-    print("[AUTH]: $user");
+  Stream zippeduser =
+      FirebaseAuth.instance.authStateChanges().switchMap((user) {
+    return ZipStream.zip2(
+        BehaviorSubject.seeded(user),
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(user != null ? user.uid : null)
+            .snapshots(), (User authuser, DocumentSnapshot firestoreuser) {
+      return [authuser, firestoreuser.data()];
+    }).onErrorReturnWith((error) {
+      print('ZipStream error $error');
+      return [null, {}];
+    });
+  });
+  Stream deviceToken = firebaseMessaging.getToken().asStream();
 
-    if (user.uid != null) {
-      store.user.state = user;
-      FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-        'uid': user.uid,
-        'displayName': user.displayName,
-        'email': user.email,
-        'deviceTokens': FieldValue.arrayUnion([user.deviceToken]),
+  Rx.combineLatest2(zippeduser, deviceToken, (zippeduser, deviceToken) {
+    return [zippeduser[0], zippeduser[1], deviceToken];
+  }).listen((data) {
+    User authuser = data[0];
+    Map firestoreuser = data[1];
+    String deviceToken = data[2];
+
+    print('[AUTH]: user changed');
+    print("AuthUser $authuser");
+    print("Firestore User $firestoreuser");
+    print("Device Token $deviceToken");
+
+    if (authuser != null) {
+      var doc =
+          FirebaseFirestore.instance.collection('users').doc(authuser.uid);
+
+      doc.update({
+        'uid': authuser.uid,
+        'displayName': authuser.displayName,
+        'email': authuser.email,
+        'deviceTokens': FieldValue.arrayUnion([deviceToken]),
       });
+
+      AppUser user = AppUser(authuser, deviceToken);
+
+      store.user.state = user;
     } else {
       store.user.state = null;
     }
@@ -36,17 +64,16 @@ authListener() {
 signInWithGoogle() async {
   try {
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+    await _auth.signInWithCredential(credential);
   } catch (e) {
     print(
         "[AUTH]: Google SignIn error. Have you forgotten to register the app in Firebase?");
     rethrow;
   }
-
-  GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-  final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-
-  await _auth.signInWithCredential(credential);
 }
 
 _deleteCacheAndStorage() async {

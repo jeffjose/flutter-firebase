@@ -7,8 +7,7 @@ import '../models/index.dart';
 
 void collectionListener() {
   FirebaseAuth.instance.authStateChanges().listen((user) {
-    print('[COLLECTION]: user changed');
-    print(user);
+    print('[COLLECTION]: user changed $user');
 
     if (user != null) {
       FirebaseFirestore.instance
@@ -19,7 +18,7 @@ void collectionListener() {
         List<PrivilagedListItem> retVal = List();
 
         snapshot.docs.forEach((el) {
-          retVal.add(PrivilagedListItem.fromMap(el.data()));
+          retVal.add(PrivilagedListItem.fromJson(el.data()));
         });
 
         store.privilagedStore.state = retVal;
@@ -40,7 +39,7 @@ void collectionListener() {
     List<PublicListItem> retVal = List();
 
     snapshot.docs.forEach((el) {
-      retVal.add(PublicListItem.fromMap(el.data()));
+      retVal.add(PublicListItem.fromJson(el.data()));
     });
 
     store.publicStore.state = retVal;
@@ -53,7 +52,7 @@ void addItemToCollection(String collectionName) {
 
   User user = FirebaseAuth.instance.currentUser;
 
-  String string = "${collectionName} item (flutter) ${Random().nextInt(100)}";
+  String string = "$collectionName item (flutter) ${Random().nextInt(100)}";
 
   print('$collectionName: Adding item');
   if (collectionName == "privilagedlist") {
