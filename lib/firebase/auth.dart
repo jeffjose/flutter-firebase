@@ -13,8 +13,12 @@ GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 FirebaseAuth _auth = FirebaseAuth.instance;
 
 authListener() {
-  Stream zippeduser =
-      FirebaseAuth.instance.authStateChanges().switchMap((user) {
+  Stream zippeduser = Rx.race([
+    // If idTokenChanges is a "super" stream of authStateChanges,
+    // we dont need this `Rx.race`. But since I dont know, I'll keep both
+    FirebaseAuth.instance.idTokenChanges(),
+    FirebaseAuth.instance.authStateChanges(),
+  ]).switchMap((user) {
     return ZipStream.zip2(
         BehaviorSubject.seeded(user),
         FirebaseFirestore.instance
@@ -61,7 +65,19 @@ authListener() {
   });
 }
 
+linkWithGoogle() async {
+  print("[AUTH] Link with Google");
+  GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+
+  GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+  OAuthCredential credential =
+      GoogleAuthProvider.credential(idToken: googleAuth.idToken);
+  await FirebaseAuth.instance.currentUser.linkWithCredential(credential);
+}
+
 signInWithGoogle() async {
+  print("[AUTH] Signin with Google");
   try {
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
