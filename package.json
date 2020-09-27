@@ -11,7 +11,7 @@
     "create:all": " yarn create:splash; yarn create:icons; yarn create:models",
     "clean": "flutter clean",
     "dev": "flutter run",
-    "build": "yarn splash; yarn icons; yarn dev",
+    "build": "flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi",
     "pub": "flutter pub get",
     "deploy:functions": "firebase deploy --only functions",
     "remove:apk": "adb uninstall com.jeffreyjose.baby",
