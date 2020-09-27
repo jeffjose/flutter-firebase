@@ -23,7 +23,7 @@ authListener() {
         BehaviorSubject.seeded(user),
         FirebaseFirestore.instance
             .collection('users')
-            .doc(user != null ? user.uid : null)
+            .doc(user?.uid)
             .snapshots(), (User authuser, DocumentSnapshot firestoreuser) {
       return [authuser, firestoreuser.data()];
     }).onErrorReturnWith((error) {
@@ -49,14 +49,16 @@ authListener() {
       var doc =
           FirebaseFirestore.instance.collection('users').doc(authuser.uid);
 
+      AppUser user = AppUser(authuser, firestoreuser, deviceToken);
+
       doc.update({
-        'uid': authuser.uid,
-        'displayName': authuser.displayName,
-        'email': authuser.email,
+        'isAnonymouse': user.isAnonymous,
+        'uid': user.uid,
+        'displayName': user.displayName,
+        'email': user.email,
+        'photoURL': user.photoURL,
         'deviceTokens': FieldValue.arrayUnion([deviceToken]),
       });
-
-      AppUser user = AppUser(authuser, deviceToken);
 
       store.user.state = user;
     } else {
@@ -104,8 +106,25 @@ _deleteCacheAndStorage() async {
   }
 }
 
+signinAnonymously() async {
+  await FirebaseAuth.instance.signInAnonymously();
+}
+
+signIn() async {
+  try {
+    print('[AUTH]: Google Sign (Silent)');
+    await _googleSignIn.signInSilently(suppressErrors: false);
+  } catch (e) {
+    print('[AUTH]: Google Sign in (Silent) failed. Doing Anon');
+    await signinAnonymously();
+  }
+}
+
 signOut() async {
   await _deleteCacheAndStorage();
   await _googleSignIn.signOut();
   await _auth.signOut();
+
+// Since the app is functional even after logout, mint a new id.
+  await signinAnonymously();
 }

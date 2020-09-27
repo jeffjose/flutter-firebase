@@ -7,25 +7,63 @@ part 'index.g.dart';
 
 @ToString()
 class AppUser {
+  bool isAnonymous = true;
   String uid;
   String email;
   String displayName;
   String photoURL;
   String deviceToken;
 
-  AppUser(User user, String deviceToken) {
-    print('[AppUser] $user, $deviceToken');
+  factory AppUser.anonymous() {
+    return AppUser(null, null, null);
+  }
+
+  Map mergeUserInfo(User user, Map firestoreuser) {
+    Map info = {};
+
+    // Loop through `User.providerData` in the reverse order to merge and create
+    // one info object
+    for (int i = user.providerData.length - 1; i >= 0; i--) {
+      info['email'] = user.providerData[i].email;
+      info['displayName'] = user.providerData[i].displayName;
+      info['photoURL'] = user.providerData[i].photoURL;
+    }
+
+    // Now merge with the `User` info, if it exists
+    info['displayName'] = user.displayName ?? info['displayName'];
+    info['photoURL'] = user.photoURL ?? info['photoURL'];
+
+    // Now overwrite info that exists in Firestore (which means the user overrode
+    // things like displayName or photoURL)
+    info['displayName'] = firestoreuser['displayName'] ?? info['displayName'];
+    info['photoURL'] = firestoreuser['photoURL'] ?? info['photoURL'];
+
+    return info;
+  }
+
+  AppUser(User user, Map firestoreuser, String deviceToken) {
+    print('[AppUser] $user, $firestoreuser, $deviceToken');
+
     if (user != null) {
+      Map info = mergeUserInfo(user, firestoreuser);
+
       this.uid = user.uid;
-      this.email = user.email;
-      this.displayName = user.displayName;
-      this.photoURL = user.photoURL;
+      this.isAnonymous = user.isAnonymous;
+
+      this.email = info['email'];
+      this.displayName = info['displayName'];
+      this.photoURL = info['photoURL'];
+    }
+
+    if (firestoreuser != null) {
+      //this.attributeFromFirestore = firestoreuser['attributeFromFirestore'];
     }
 
     this.deviceToken = deviceToken;
   }
 
   logout() {
+    this.isAnonymous = null;
     this.uid = null;
     this.email = null;
     this.displayName = null;

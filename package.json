@@ -12,6 +12,9 @@
     "clean": "flutter clean",
     "dev": "flutter run",
     "build": "yarn splash; yarn icons; yarn dev",
-    "pub": "flutter pub get"
+    "pub": "flutter pub get",
+    "deploy:functions": "firebase deploy --only functions",
+    "remove:apk": "adb uninstall com.jeffreyjose.baby",
+    "clean:apk": "adb shell pm clear com.jeffreyjose.baby"
   }
 }

@@ -24,6 +24,8 @@ void main() async {
   //await Firebase.initializeApp();
   final Future<FirebaseApp> _app = Firebase.initializeApp();
 
+  await signIn();
+
   Stream.fromFuture(_app).listen((app) {
     authListener();
     collectionListener();
